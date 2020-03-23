@@ -1,0 +1,74 @@
+version: "2"
+services:
+    nginx:
+        image: nginx
+        container_name: js-docker_nginx
+        volumes:
+            - ./nginx:/app/nginx
+            - ./client/public:/app/client
+            - ./logs:/app/logs
+        ports:
+            - "${JS_DOCK_NGINX_PORT}:8081"
+        expose:
+            - ${JS_DOCK_NGINX_PORT}
+        environment:
+            - NGINX_HOST=${JS_DOCK_NGINX_HOST}
+        command: /bin/bash -c "envsubst < /app/nginx/client.conf > /etc/nginx/conf.d/client.conf && exec nginx -g 'daemon off;'"
+        networks:
+            - js-dock-network
+    # api:
+    #     image: "node:12"
+    #     user: "node"
+    #     working_dir: /home/node/api
+    #     restart: always
+    #     environment:
+    #         - NODE_ENV=production
+    #     volumes:
+    #         - ./api:/home/node/api
+    #     expose:
+    #         - 8080
+    #     ports:
+    #         - "8080:8080"
+    #     command: "npm start"
+    #     privileged: true
+    #     networks:
+    #         - js-dock-network
+    # client:
+    #     image: mhart/alpine-node:6.8.0
+    #     restart: always
+    #     ports:
+    #         - "3000:3000"
+    #     working_dir: /client/src/app
+    #     volumes:
+    #         - ./client:/client/src/app
+    #     entrypoint: ["npm", "start"]
+    #     links:
+    #         - api
+    #     networks:
+    #         - js-dock-network
+    # api:
+    #     image: webapp-api
+    #     restart: always
+    #     ports:
+    #         - "9000:9000"
+    #     volumes:
+    #         - ./api:/api
+    #         - /api/node_modules
+    #     depends_on:
+    #         - mongodb
+    #     networks:
+    #         - js-dock-network
+    # mongodb:
+    #     image: mongo
+    #     restart: always
+    #     container_name: mongodb
+    #     volumes:
+    #         - ./data-node:/data/db
+    #     ports:
+    #         - 27017:27017
+    #     command: mongod --noauth --smallfiles
+    #     networks:
+    #         - js-dock-network
+networks:
+    js-dock-network:
+        driver: bridge
