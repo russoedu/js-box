@@ -1,2 +1,2 @@
 
-docker exec -it js-docker_nginx /bin/bash
+docker exec -it js-docker-nginx /bin/bash

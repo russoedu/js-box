@@ -1,21 +1,46 @@
-version: "2"
+version: "3.7"
 services:
-    nginx:
-        image: nginx
-        container_name: js-docker_nginx
-        volumes:
-            - ./nginx:/app/nginx
-            - ./client/public:/app/client
-            - ./logs:/app/logs
-        ports:
-            - "${JS_DOCK_NGINX_PORT}:8081"
-        expose:
-            - ${JS_DOCK_NGINX_PORT}
-        environment:
-            - NGINX_HOST=${JS_DOCK_NGINX_HOST}
-        command: /bin/bash -c "envsubst < /app/nginx/client.conf > /etc/nginx/conf.d/client.conf && exec nginx -g 'daemon off;'"
-        networks:
-            - js-dock-network
+  nginx:
+    container_name: js-docker-nginx
+    # image: nginx
+    build:
+      context: .
+      dockerfile: .docker-nginx-${JS_DOCK_ENVIRONMENT}.dockerfile
+    restart: always
+    volumes:
+      - ./nginx:/app/nginx/
+      - ./logs:/app/logs
+      - ./client:/app/client
+    ports:
+      - "${JS_DOCK_NGINX_PORT}:8081"
+    expose:
+      - ${JS_DOCK_NGINX_PORT}
+    environment:
+      - NGINX_HOST=${JS_DOCK_NGINX_HOST}
+    command: /bin/bash -c "envsubst < /app/nginx/client${JS_DOCK_ENVIRONMENT}.conf > /etc/nginx/conf.d/client.conf && exec nginx -g 'daemon off;'"
+    networks:
+      - js-dock-network
+  # client:
+  #   container_name: js-docker-client
+  #   build:
+  #     context: ./client
+  #     dockerfile: Dockerfile
+  #   restart: always
+  #   ports:
+  #     - "80:3000"
+  #   environment:
+  #       - CI=true
+  #       - NODE_ENV=development
+  #       - CHOKIDAR_USEPOLLING=true
+  #   volumes:
+  #     - ./client:/app
+  #     - '/app/node_modules'
+  #   working_dir: /app
+    # entrypoint: ["npm", "start"]
+    # links:
+    #     - api
+    networks:
+      - js-dock-network
     # api:
     #     image: "node:12"
     #     user: "node"
