@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          JS-Dock app up and running
+          JS-Dock app is up and running
         </p>
         <a
           className="App-link"
