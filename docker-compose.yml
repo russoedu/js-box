@@ -2,21 +2,38 @@ version: "3.7"
 services:
   nginx:
     container_name: js-docker-nginx
-    # image: nginx
-    build:
-      context: .
-      dockerfile: .docker-nginx-${JS_DOCK_ENVIRONMENT}.dockerfile
+    image: nginx:latest
     restart: always
     env_file:
       - ./.env
     volumes:
       - ./nginx:/app/nginx/
       - ./logs:/app/logs
-      # - ./client:/app/client
     ports:
-      - "${JS_DOCK_NGINX_PORT}:8081"
+      - "${JS_DOCK_NGINX_PORT}:8080"
     expose:
       - ${JS_DOCK_NGINX_PORT}
+    environment:
+      - NGINX_HOST=${JS_DOCK_NGINX_HOST}
+      - NGINX_PORT=8080
+    command: /bin/bash -c "envsubst < /app/nginx/nginx-${JS_DOCK_ENVIRONMENT}.conf > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
+    depends_on:
+      - client
+    networks:
+      - js-dock-network
+  client:
+    container_name: js-docker-client
+    build:
+      context: .
+      dockerfile: .docker-client-${JS_DOCK_ENVIRONMENT}.dockerfile
+    restart: always
+    env_file:
+      - ./.env
+    volumes:
+      - ./nginx:/app/nginx/
+      - ./logs:/app/logs
+    ports:
+      - "3000:3000"
     environment:
       - NGINX_HOST=${JS_DOCK_NGINX_HOST}
     command: /bin/bash -c "envsubst < /app/nginx/client-${JS_DOCK_ENVIRONMENT}.conf > /etc/nginx/conf.d/client.conf && exec nginx -g 'daemon off;'"
