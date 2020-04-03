@@ -1,2 +1,2 @@
 
-docker exec -it js-docker-client /bin/bash
+docker exec -it js-dock-client /bin/bash

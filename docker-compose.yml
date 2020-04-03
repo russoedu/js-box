@@ -50,6 +50,7 @@ services:
     volumes:
       - ./api:/app/api/
       - ./logs:/app/logs
+      - /app/api/node_modules
     privileged: true
     depends_on:
       - mongodb

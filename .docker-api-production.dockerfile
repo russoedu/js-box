@@ -5,7 +5,9 @@ FROM node:12 as js-dock-api
 WORKDIR /app/api
 
 # install and cache app dependencies
-COPY ./api/package.json /app/api/package.json
+COPY ./api/package.json ./package.json
+RUN ls
+RUN cat package.json
 RUN npm install
 
 RUN npm install -g pm2
