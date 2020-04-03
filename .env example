@@ -1,0 +1,5 @@
+### development OR production
+JS_DOCK_ENVIRONMENT=production
+JS_DOCK_NGINX_PORT=80
+JS_DOCK_NGINX_HOST=localhost
+JS_DOCK_MONGODB_PORT=9090

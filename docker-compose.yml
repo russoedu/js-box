@@ -55,7 +55,7 @@ services:
     image: mongo:latest
     restart: always
     ports:
-      - 27017:27017
+      - ${JS_DOCK_MONGODB_PORT}:27017
     networks:
       - js-dock-network
 networks:
