@@ -1,5 +1,5 @@
 # base image
-FROM nginx:latest
+FROM nginx:latest as js-dock-client
 
 # set working directory
 WORKDIR /app

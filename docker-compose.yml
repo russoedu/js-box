@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   nginx:
-    container_name: js-docker-nginx
+    container_name: js-dock-nginx
     image: nginx:latest
     restart: always
     env_file:
@@ -22,7 +22,7 @@ services:
     networks:
       - js-dock-network
   client:
-    container_name: js-docker-client
+    container_name: js-dock-client
     build:
       context: .
       dockerfile: .docker-client-${JS_DOCK_ENVIRONMENT}.dockerfile
@@ -32,85 +32,32 @@ services:
     volumes:
       - ./nginx:/app/nginx/
       - ./logs:/app/logs
-    ports:
-      - "3000:3000"
     command: /bin/bash -c "envsubst < /app/nginx/client-${JS_DOCK_ENVIRONMENT}.conf > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
     networks:
       - js-dock-network
-  # client:
-  #   container_name: js-docker-client
-  #   build:
-  #     context: ./client
-  #     dockerfile: Dockerfile
-  #   restart: always
-  #   ports:
-  #     - "80:3000"
-  #   environment:
-  #       - CI=true
-  #       - NODE_ENV=development
-  #       - CHOKIDAR_USEPOLLING=true
-  #   volumes:
-  #     - ./client:/app
-  #     - '/app/node_modules'
-  #   working_dir: /app
-    # entrypoint: ["npm", "start"]
-    # links:
-    #     - api
+  api:
+    container_name: js-dock-api
+    build:
+      context: .
+      dockerfile: .docker-api-${JS_DOCK_ENVIRONMENT}.dockerfile
+    restart: always
+    user: "node"
+    env_file:
+      - ./.env
+    volumes:
+      - ./api:/app/api/
+      - ./logs:/app/logs
+    privileged: true
     networks:
       - js-dock-network
-    # api:
-    #     image: "node:12"
-    #     user: "node"
-    #     working_dir: /home/node/api
-    #     restart: always
-    #     environment:
-    #         - NODE_ENV=production
-    #     volumes:
-    #         - ./api:/home/node/api
-    #     expose:
-    #         - 8080
-    #     ports:
-    #         - "8080:8080"
-    #     command: "npm start"
-    #     privileged: true
-    #     networks:
-    #         - js-dock-network
-    # client:
-    #     image: mhart/alpine-node:6.8.0
-    #     restart: always
-    #     ports:
-    #         - "3000:3000"
-    #     working_dir: /client/src/app
-    #     volumes:
-    #         - ./client:/client/src/app
-    #     entrypoint: ["npm", "start"]
-    #     links:
-    #         - api
-    #     networks:
-    #         - js-dock-network
-    # api:
-    #     image: webapp-api
-    #     restart: always
-    #     ports:
-    #         - "9000:9000"
-    #     volumes:
-    #         - ./api:/api
-    #         - /api/node_modules
-    #     depends_on:
-    #         - mongodb
-    #     networks:
-    #         - js-dock-network
-    # mongodb:
-    #     image: mongo
-    #     restart: always
-    #     container_name: mongodb
-    #     volumes:
-    #         - ./data-node:/data/db
-    #     ports:
-    #         - 27017:27017
-    #     command: mongod --noauth --smallfiles
-    #     networks:
-    #         - js-dock-network
+  mongodb:
+    container_name: js-dock-mongodb
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
+    networks:
+      - js-dock-network
 networks:
     js-dock-network:
         driver: bridge

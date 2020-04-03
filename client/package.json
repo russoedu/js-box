@@ -1,6 +1,7 @@
 {
   "name": "js-dock-client",
   "version": "1.0.0",
+  "description": "JS Dock React client",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
