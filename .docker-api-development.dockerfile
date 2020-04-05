@@ -1,5 +1,5 @@
 # base image
-FROM node:12 as js-dock-api
+FROM node:12 as js-dock-api-development
 
 # set working directory
 WORKDIR /app/api
@@ -8,8 +8,8 @@ WORKDIR /app/api
 COPY ./api/package.json ./package.json
 RUN npm install
 
-RUN npm install -g pm2
+RUN npm install -g nodemon
 
 
 # start app
-CMD ["pm2-runtime", "app.js"]
+CMD ["nodemon", "app.js"]
