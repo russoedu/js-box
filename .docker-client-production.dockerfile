@@ -6,6 +6,10 @@ ARG JS_DOCK_ENVIRONMENT=production
 ARG JS_DOCK_NGINX_HOST=localhost
 ARG JS_DOCK_NGINX_PORT=80
 
+# Set Nginx production config
+COPY ./nginx/client-production.conf /app/nginx/client-production.conf
+RUN envsubst < /app/nginx/client-production.conf > /etc/nginx/conf.d/default.conf
+
 # Set working directory as the client dir
 WORKDIR /app/client
 
