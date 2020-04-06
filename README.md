@@ -1,5 +1,7 @@
 This is a bootstrap Docker for NodeJs + React + Nginx app
 
+https://medium.com/codebase/mern-ep01-setting-up-a-development-environment-with-docker-1bb0b6e4d464
+
 ## Available Scripts
 ```docker-compose build```
 ```docker-compose up --build -d```

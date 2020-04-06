@@ -19,11 +19,11 @@ ReactDOM.render(
     </div>
     <div>
       <Router>
-      <div>
-      <Route path='/add' component={AddTodo} />
-      <Route exact path='/' component={ListTodo} />
-      <Route path='/update/:id' component={UpdateTodo} />
-      </div>
+        <div>
+          <Route path='/add' component={AddTodo} />
+          <Route exact path='/' component={ListTodo} />
+          <Route path='/update/:id' component={UpdateTodo} />
+        </div>
       </Router>
     </div>
   </div>,

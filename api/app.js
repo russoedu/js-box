@@ -6,11 +6,12 @@ const fs = require('fs')
 const path = require('path')
 const cors = require('cors');
 const bodyParser = require('body-parser')
+require('dotenv').config()
 
 //server configuration
 const basePath = '/';
 const port = 4000;
-const accessLogStream = fs.createWriteStream(path.join(__dirname, '../logs/api-access.log'), { flags: 'a' })
+const accessLogStream = fs.createWriteStream(path.join(__dirname, `../logs/api-${process.env.JS_DOCK_ENVIRONMENT}-access.log`), { flags: 'a' })
 
 // Connection to DB
 mongoose.connect('mongodb://mongodb')

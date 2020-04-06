@@ -1,15 +1,23 @@
 # base image
 FROM node:12 as js-dock-api
 
-# set working directory
+# Set default env vars
+ARG JS_DOCK_ENVIRONMENT=production
+ARG JS_DOCK_NGINX_HOST=localhost
+ARG JS_DOCK_NGINX_PORT=80
+
+# Set working directory
 WORKDIR /app/api
 
-# install and cache app dependencies
+# Install and cache app dependencies
+COPY ./api/app.js ./app.js
+COPY ./api/src ./src
 COPY ./api/package.json ./package.json
-RUN npm install
+COPY ./api/package-lock.json ./package-lock.json
+RUN npm install --production
 
+# Install PM2
 RUN npm install -g pm2
-
 
 # start app
 CMD ["pm2-runtime", "app.js"]

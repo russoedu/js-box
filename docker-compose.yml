@@ -8,7 +8,7 @@ services:
       - ./.env
     volumes:
       - ./nginx:/app/nginx/
-      - ./logs:/app/logs
+      - ./logs/nginx:/app/logs
     ports:
       - "${JS_DOCK_NGINX_PORT}:8000"
     expose:
@@ -31,8 +31,10 @@ services:
     env_file:
       - ./.env
     volumes:
-      - ./nginx:/app/nginx/
-      - ./logs:/app/logs
+      - ./client:/app/client/
+      - /app/client/node_modules
+      - /app/client/build
+      - ./logs/client:/app/logs
     depends_on:
       - api
     networks:
@@ -48,8 +50,8 @@ services:
       - ./.env
     volumes:
       - ./api:/app/api/
-      - ./logs:/app/logs
       - /app/api/node_modules
+      - ./logs/api:/app/logs
     privileged: true
     depends_on:
       - mongodb

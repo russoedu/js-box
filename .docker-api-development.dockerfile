@@ -1,6 +1,11 @@
 # base image
 FROM node:12 as js-dock-api-development
 
+# Set default env vars
+ARG JS_DOCK_ENVIRONMENT=development
+ARG JS_DOCK_NGINX_HOST=localhost
+ARG JS_DOCK_NGINX_PORT=80
+
 # set working directory
 WORKDIR /app/api
 

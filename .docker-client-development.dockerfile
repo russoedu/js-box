@@ -1,6 +1,11 @@
 # base image
 FROM nginx:latest as js-dock-client
 
+# Set default env vars
+ARG JS_DOCK_ENVIRONMENT=development
+ARG JS_DOCK_NGINX_HOST=localhost
+ARG JS_DOCK_NGINX_PORT=80
+
 # set working directory
 WORKDIR /app
 
