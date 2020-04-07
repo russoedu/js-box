@@ -9,7 +9,10 @@ export const Header = (props) => {
               <span className="sr-only">Toggle navigation</span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="/">JS-Dock Boilerplate</a>
+            <a className="navbar-brand" href="/">
+              <img id="logo" src="/img/JS-box.svg" />
+              JS Box
+            </a>
           </div>
         </div>
       </nav>

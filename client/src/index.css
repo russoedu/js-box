@@ -5,3 +5,9 @@
 button[type="submit"] {
   margin-right: 10px;
 }
+
+#logo {
+  height: 30px;
+  display: inline;
+  margin-right: 5px;
+}
