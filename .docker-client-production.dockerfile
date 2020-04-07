@@ -20,9 +20,9 @@ WORKDIR /app/client
 # Install and cache app dependencies
 COPY ./client/package.json ./package.json
 COPY ./client/package-lock.json ./package-lock.json
-COPY ./client/src ./src
-COPY ./client/public ./public
 RUN npm install --production
 
 # Build the react app
+COPY ./client/src ./src
+COPY ./client/public ./public
 RUN npx react-scripts build

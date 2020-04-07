@@ -5,6 +5,7 @@ https://medium.com/codebase/mern-ep01-setting-up-a-development-environment-with-
 ## Available Scripts
 ```docker-compose build```
 ```docker-compose up --build -d```
+```docker system prune -a```
 
 ## Available external ports
 

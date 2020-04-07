@@ -8,15 +8,15 @@ var TodoList = require('../models/TodoList');
 // Get Specific
 router.route('/:id').get(function (req, res) {
   var id = req.params.id;
-  TodoList.findById(id, function (err, item){
-      res.json(item);
+  TodoList.findById(id, function (err, item) {
+    res.json(item);
   });
 });
 
 // Get All Items
 router.route('/').all(function (req, res) {
-  TodoList.find(function (err, items){
-    if(err){
+  TodoList.find(function (err, items) {
+    if (err) {
       console.log(err);
     } else {
       res.json(items);
@@ -27,39 +27,39 @@ router.route('/').all(function (req, res) {
 // Add item
 router.route('/add').post(function (req, res) {
   var item = new TodoList(req.body);
-      item.save()
+  item.save()
     .then(item => {
-    res.json('Added');
+      res.json('Added');
     })
     .catch(err => {
-    res.status(400).send("unable to save to database");
+      res.status(400).send("unable to save to database");
     });
 });
 
 //  Update Specific
 router.route('/update/:id').post(function (req, res) {
-  TodoList.findById(req.params.id, function(err, item) {
+  TodoList.findById(req.params.id, function (err, item) {
     if (!item)
       return next(new Error('Could not load Document'));
     else {
       item.desc = req.body.desc;
 
       item.save().then(item => {
-          res.json('Updated');
+        res.json('Updated');
       })
-      .catch(err => {
-            res.status(400).send("unable to update the database");
-      });
+        .catch(err => {
+          res.status(400).send("unable to update the database");
+        });
     }
   });
 });
 
 // Delete Specific
 router.route('/delete/:id').get(function (req, res) {
-  TodoList.findByIdAndRemove({_id: req.params.id},
-       function(err, item){
-        if(err) res.json(err);
-        else res.json('Deleted');
+  TodoList.findByIdAndRemove({ _id: req.params.id },
+    function (err, item) {
+      if (err) res.json(err);
+      else res.json('Deleted');
     });
 });
 

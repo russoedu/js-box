@@ -14,12 +14,7 @@ WORKDIR /app/client
 # Install and cache app dependencies
 COPY ./client/package.json ./package.json
 COPY ./client/package-lock.json ./package-lock.json
-COPY ./client/src ./src
-COPY ./client/public ./public
 RUN npm install
 
 # Start the React app
-# RUN npm start
 CMD ["npx", "react-scripts", "start"]
-# CMD ["tail", "-f", "/dev/null"]
-# RUN npx react-scripts build
