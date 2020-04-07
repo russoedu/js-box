@@ -21,9 +21,8 @@ services:
       - client
       - api
     networks:
-      - js-dock-network
+      - network
   client:
-    container_name: js-dock-client
     build:
       context: .
       dockerfile: .docker-client-${JS_DOCK_ENVIRONMENT}.dockerfile
@@ -38,9 +37,8 @@ services:
     depends_on:
       - api
     networks:
-      - js-dock-network
+      - network
   api:
-    container_name: js-dock-api
     build:
       context: .
       dockerfile: .docker-api-${JS_DOCK_ENVIRONMENT}.dockerfile
@@ -56,7 +54,7 @@ services:
     depends_on:
       - mongodb
     networks:
-      - js-dock-network
+      - network
   mongodb:
     container_name: js-dock-mongodb
     image: mongo:latest
@@ -64,7 +62,7 @@ services:
     ports:
       - ${JS_DOCK_MONGODB_PORT}:27017
     networks:
-      - js-dock-network
+      - network
 networks:
-    js-dock-network:
+    network:
         driver: bridge

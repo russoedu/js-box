@@ -1,5 +1,5 @@
 # Latest Nginx as base image
-FROM nginx:latest as js-dock-client
+FROM nginx
 
 # Set default env vars
 ARG JS_DOCK_ENVIRONMENT=production

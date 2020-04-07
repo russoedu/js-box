@@ -1,21 +1,25 @@
 # base image
-FROM nginx:latest as js-dock-client
+FROM node:12
 
 # Set default env vars
 ARG JS_DOCK_ENVIRONMENT=development
 ARG JS_DOCK_NGINX_HOST=localhost
 ARG JS_DOCK_NGINX_PORT=80
+ENV NODE_ENV=development
+ENV CHOKIDAR_USEPOLLING=true
+ENV PATH /app/client/node_modules/.bin:$PATH
 
-# set working directory
-WORKDIR /app
+# Set working directory as the client dir
+WORKDIR /app/client
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+# Install and cache app dependencies
+COPY ./client/package.json ./package.json
+COPY ./client/package-lock.json ./package-lock.json
+COPY ./client/src ./src
+COPY ./client/public ./public
+RUN npm install
 
-# install and cache app dependencies
-COPY package.json /app/package.json
-RUN npm install --silent
-RUN npm install react-scripts@3.4.1 -g --silent
-
-# start app
+# Start the React app
+# RUN npm start
 CMD ["npm", "start"]
+# CMD ["tail", "-f", "/dev/null"]

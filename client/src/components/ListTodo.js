@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import TodoService from './TodoService';
-import axios from 'axios';
 import ListTodoRow from './ListTodoRow';
 
 export default class IndexItem extends Component {

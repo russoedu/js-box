@@ -1,5 +1,5 @@
 # base image
-FROM node:12 as js-dock-api
+FROM node:12
 
 # Set default env vars
 ARG JS_DOCK_ENVIRONMENT=production

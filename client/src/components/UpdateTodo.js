@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import TodoService from './TodoService';
 
 export default class UpdateTodo extends Component {
