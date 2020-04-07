@@ -7,7 +7,6 @@ ARG JS_DOCK_NGINX_HOST=localhost
 ARG JS_DOCK_NGINX_PORT=80
 ENV NODE_ENV=development
 ENV CHOKIDAR_USEPOLLING=true
-ENV PATH /app/client/node_modules/.bin:$PATH
 
 # Set working directory as the client dir
 WORKDIR /app/client
@@ -21,5 +20,6 @@ RUN npm install
 
 # Start the React app
 # RUN npm start
-CMD ["npm", "start"]
+CMD ["npx", "react-scripts", "start"]
 # CMD ["tail", "-f", "/dev/null"]
+# RUN npx react-scripts build

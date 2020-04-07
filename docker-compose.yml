@@ -23,6 +23,7 @@ services:
     networks:
       - network
   client:
+    container_name: js-dock-client
     build:
       context: .
       dockerfile: .docker-client-${JS_DOCK_ENVIRONMENT}.dockerfile
@@ -39,6 +40,7 @@ services:
     networks:
       - network
   api:
+    container_name: js-dock-api
     build:
       context: .
       dockerfile: .docker-api-${JS_DOCK_ENVIRONMENT}.dockerfile
