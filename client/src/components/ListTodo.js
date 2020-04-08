@@ -54,20 +54,18 @@ export default class IndexItem extends Component {
 
     render() {
       return (
-        <div className="container">
-          <div className="panel panel-default">
-            <div className="panel-heading">List of Tasks</div>
-            <div className="panel-body">
-            <p>Click on the task description to edit</p>
-              <table id="todo-list" className="table table-bordered">
-                <tbody>
-                  {this.tabRow()}
-                </tbody>
-              </table>
-            </div>
-            <div className="panel-footer">
-              <button onClick={this.handleAdd} className="btn btn-info">New task</button>
-            </div>
+        <div className="card">
+          <div className="card-header">
+            List of Tasks
+          </div>
+          <div className="card-body">
+            <p className="card-text alert alert-primary">Click on the task description to edit</p>
+          </div>
+          <div className="list-group">
+            {this.tabRow()}
+          </div>
+          <div className="card-body">
+            <button onClick={this.handleAdd} className="btn btn-info">New task</button>
           </div>
         </div>
       );

@@ -2,19 +2,11 @@ import React from "react";
 
 export const Header = (props) => {
   return (
-    <nav className="navbar navbar-default">
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span className="sr-only">Toggle navigation</span>
-              <span className="icon-bar"></span>
-            </button>
-            <a className="navbar-brand" href="/">
-              <img id="logo" src="/img/JS-box.svg" />
-              JS Box
-            </a>
-          </div>
-        </div>
-      </nav>
+    <header class="navbar navbar-expand-lg">
+      <a className="navbar-brand" href="/">
+        <img id="logo" src="/img/JS-box.svg" />
+        <span className="title">JS Box</span>
+      </a>
+  </header>
   );
 }

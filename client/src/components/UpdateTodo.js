@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TodoService from './TodoService';
+import TodoForm from './TodoForm';
 
 export default class UpdateTodo extends Component {
 
@@ -56,22 +57,15 @@ export default class UpdateTodo extends Component {
 
   render() {
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="panel panel-default">
-            <div className="panel-heading">Edit Task</div>
-            <div className="panel-body">
-            <p>Task description</p>
-              <input type="hidden" value={this.state._id} />
-                  <input type="text" value={this.state.desc} onChange={this.handleChange}  className="form-control"/>
-            </div>
-            <div className="panel-footer">
-            <button type="submit" className="btn btn-primary">Update</button>
-            <button type="button" className="btn btn-default" onClick={this.handleCancel}>Cancel</button>
-            </div>
-          </div>
-        </form>
-      </div>
+      <TodoForm
+        task="Edit Task"
+        action="Update"
+        onSubmit={this.handleSubmit}
+        hidden={this.state._id}
+        text={this.state.desc}
+        onChange={this.handleChange}
+        cancel={this.handleCancel}
+      />
     );
   }
 }
