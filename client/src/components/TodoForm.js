@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class ListTodoRow extends Component {
+export default class ListTodoRow extends React.Component {
   render() {
     let hidden = '';
     if (this.props.hidden) {

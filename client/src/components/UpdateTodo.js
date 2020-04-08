@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TodoService from './TodoService';
 import TodoForm from './TodoForm';
 
-export default class UpdateTodo extends Component {
+export default class UpdateTodo extends React.Component {
 
   constructor(props) {
       super(props);

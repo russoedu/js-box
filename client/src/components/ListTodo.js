@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TodoService from './TodoService';
 import ListTodoRow from './ListTodoRow';
 
-export default class IndexItem extends Component {
-
+export default class IndexItem extends React.Component {
   constructor(props) {
       super(props);
       this.state = {items: ''};

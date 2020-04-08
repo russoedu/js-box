@@ -2,28 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import {Header} from "./components/Header";
-
-import AddTodo from './components/AddTodo';
-import ListTodo from './components/ListTodo';
-import UpdateTodo from './components/UpdateTodo';
+import App from "./App";
 
 import './index.css';
 
 ReactDOM.render(
-  <div>
-    <Header/>
-    <div className="container">
-      <div>
-        <Router>
-          <div>
-            <Route path='/add' component={AddTodo} />
-            <Route exact path='/' component={ListTodo} />
-            <Route path='/update/:id' component={UpdateTodo} />
-          </div>
-        </Router>
-      </div>
-    </div>
-  </div>,
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
   document.getElementById('root')
 );
