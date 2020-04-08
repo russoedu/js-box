@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   nginx:
-    container_name: js-dock-nginx
+    container_name: js-box-nginx
     image: nginx:latest
     restart: always
     env_file:
@@ -23,7 +23,7 @@ services:
     networks:
       - network
   client:
-    container_name: js-dock-client
+    container_name: js-box-client
     build:
       context: .
       dockerfile: .docker-client-${JS_DOCK_ENVIRONMENT}.dockerfile
@@ -43,7 +43,7 @@ services:
     networks:
       - network
   api:
-    container_name: js-dock-api
+    container_name: js-box-api
     build:
       context: .
       dockerfile: .docker-api-${JS_DOCK_ENVIRONMENT}.dockerfile
@@ -61,7 +61,7 @@ services:
     networks:
       - network
   mongodb:
-    container_name: js-dock-mongodb
+    container_name: js-box-mongodb
     image: mongo:latest
     restart: always
     ports:

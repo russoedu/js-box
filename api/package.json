@@ -1,5 +1,5 @@
 {
-  "name": "js-dock-server",
+  "name": "js-box-server",
   "version": "1.0.0",
   "description": "JS Dock Express server - https://medium.com/codebase/mern-ep02-developing-the-back-end-with-mongodb-nodejs-and-express-556a6748b550",
   "main": "index.js",
