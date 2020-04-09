@@ -21,8 +21,9 @@ WORKDIR /app/client
 COPY ./client-angular .
 
 # Install and cache app dependencies
-RUN npm install --production --quiet
+RUN npm install --quiet
 
 # Build the angular app
 RUN npm install -g @angular/cli@9.1.1
 RUN ng build --prod=true --output-path=./build
+RUN rm -rf node_modules/*
