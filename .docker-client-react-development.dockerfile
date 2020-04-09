@@ -2,9 +2,9 @@
 FROM node:12
 
 # Set default env vars
-ARG JS_DOCK_ENVIRONMENT=development
-ARG JS_DOCK_NGINX_HOST=localhost
-ARG JS_DOCK_NGINX_PORT=80
+ARG JS_BOX_ENVIRONMENT=development
+ARG JS_BOX_NGINX_HOST=localhost
+ARG JS_BOX_NGINX_PORT=80
 ENV NODE_ENV=development
 ENV CHOKIDAR_USEPOLLING=true
 
@@ -12,8 +12,8 @@ ENV CHOKIDAR_USEPOLLING=true
 WORKDIR /app/client
 
 # Install and cache app dependencies
-COPY ./client/package.json ./package.json
-COPY ./client/package-lock.json ./package-lock.json
+COPY ./client-react/package.json ./package.json
+COPY ./client-react/package-lock.json ./package-lock.json
 RUN npm install
 
 # Start the React app
