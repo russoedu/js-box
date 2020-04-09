@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Input } from '@angular/core';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-list-row',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListRowComponent implements OnInit {
 
-  constructor() { }
+  @Input() item;
+
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
+  }
+
+  delete(): void {
+    alert('delete ' + this.item._id)
+  }
+
+  update() {
+    this.router.navigate(['/update', this.item._id]);
   }
 
 }

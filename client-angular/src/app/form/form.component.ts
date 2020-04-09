@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-form',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormComponent implements OnInit {
 
-  constructor() { }
+  @Input() task;
+  @Input() action;
+  @Input() text;
+  // @Input() onSubmit;
+  // @Input() hidden;
+  // @Input() onChange;
+  // @Input() cancel;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+  cancel(): void {
+    this.router.navigate(['/']);
   }
 
 }

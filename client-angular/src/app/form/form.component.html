@@ -1,16 +1,16 @@
 <div class="card">
   <form onSubmit=this.props.onSubmit>
     <div class="card-header">
-      <div class="panel-heading">this.props.task</div>
+      <div class="panel-heading">{{ task }}</div>
     </div>
     <div class="card-body">
       <p class="card-text">Task description</p>
       hidden
-      <input type="text" value=this.props.text onChange=this.props.onChange  class="form-control"/>
+      <input type="text" [value]="text" class="form-control"/>
     </div>
     <div class="card-body">
-      <button type="submit" class="btn btn-primary">this.props.action</button>
-      <button type="button" class="btn btn-default" onClick=this.props.cancel>Cancel</button>
+      <button type="submit" class="btn btn-primary">{{ action }}</button>
+      <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
     </div>
   </form>
 </div>
