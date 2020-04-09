@@ -1,4 +1,4 @@
-<img src="./client/public/favicon/favicon-72.png" alt="JS Box logo" style="float: left;"/>
+<img src="./client-react/public/favicon/favicon-72.png" alt="JS Box logo" style="float: left;"/>
 
 # JS Box
 
