@@ -17,4 +17,5 @@ COPY ./client-react/package-lock.json ./package-lock.json
 RUN npm install
 
 # Start the React app
-CMD ["npx", "react-scripts", "start"]
+RUN npm install -g react-scripts@3
+CMD ["react-scripts", "start"]
