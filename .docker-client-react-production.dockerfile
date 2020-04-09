@@ -21,7 +21,7 @@ WORKDIR /app/client
 COPY ./client-react .
 
 # Install and cache app dependencies
-RUN npm install --production
+RUN npm install --production --quiet
 
 # Build the react app
 RUN npx react-scripts build

@@ -17,6 +17,8 @@ To configure JS Box, make a copy of `.env example` and save it as `.env` and cha
 ```
 ### development OR production
 JS_BOX_ENVIRONMENT=production # development allows live reloading of client and server
+### react OR angular
+JS_BOX_CLIENT=react
 JS_BOX_NGINX_PORT=80          # the Docker port that will be accessible on the host
 JS_BOX_NGINX_HOST=localhost   # the URL of the system
 JS_BOX_MONGODB_PORT=9090      # The port to be able to access MongoDB on the host
