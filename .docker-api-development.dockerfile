@@ -1,5 +1,5 @@
 # base image
-FROM node:12
+FROM node:13
 
 # Set default env vars
 ARG JS_BOX_ENVIRONMENT=development
@@ -12,7 +12,7 @@ WORKDIR /app/api
 # Install and cache app dependencies
 COPY ./api/package.json ./package.json
 COPY ./api/package-lock.json ./package-lock.json
-RUN npm install
+RUN npm install --production --quiet
 
 # Install Nodemon
 RUN npm install -g nodemon

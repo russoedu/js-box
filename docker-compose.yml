@@ -33,14 +33,13 @@ services:
     environment:
       - NODE_ENV=${JS_BOX_ENVIRONMENT}
     volumes:
-      - ./client-${JS_BOX_CLIENT}:/app/client/
       - /app/client/node_modules
       - /app/client/build
+      - ./client-${JS_BOX_CLIENT}:/app/client/
       - ./logs/client-${JS_BOX_CLIENT}:/app/logs
     depends_on:
       - api
     stdin_open: true
-    tty: true
     networks:
       - network
   api:
@@ -53,8 +52,8 @@ services:
     env_file:
       - ./.env
     volumes:
-      - ./api:/app/api/
       - /app/api/node_modules
+      - ./api:/app/api/
       - ./logs/api:/app/logs
     privileged: true
     depends_on:

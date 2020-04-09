@@ -1,5 +1,5 @@
 # base image
-FROM node:12
+FROM node:13
 
 # Set default env vars
 ARG JS_BOX_ENVIRONMENT=development
@@ -17,6 +17,5 @@ COPY ./client-angular/package-lock.json ./package-lock.json
 RUN npm install
 
 # Start the Angular app
-RUN npm install -g @angular/cli
-
-CMD ["ng", "serve", "--watch", "--progress", "--disable-host-check"]
+RUN npm install -g @angular/cli@9.1.1
+CMD ["ng", "serve", "--disable-host-check", "--hmr=true", "--poll=1000", "--host", "0.0.0.0"]

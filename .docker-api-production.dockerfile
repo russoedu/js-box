@@ -1,5 +1,5 @@
 # base image
-FROM node:12
+FROM node:13
 
 # Set default env vars
 ARG JS_BOX_ENVIRONMENT=production
@@ -12,10 +12,10 @@ WORKDIR /app/api
 # Install and cache app dependencies
 COPY ./api/package.json ./package.json
 COPY ./api/package-lock.json ./package-lock.json
-RUN npm install --production
+RUN npm install --production --quiet
 
 # Install PM2
-RUN npm install -g pm2
+RUN npm install -g pm2 --quiet
 
 # start app
 CMD ["pm2-runtime", "app.js"]

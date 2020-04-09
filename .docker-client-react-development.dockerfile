@@ -1,5 +1,5 @@
 # base image
-FROM node:12
+FROM node:13
 
 # Set default env vars
 ARG JS_BOX_ENVIRONMENT=development

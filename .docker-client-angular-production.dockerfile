@@ -8,7 +8,7 @@ ARG JS_BOX_NGINX_PORT=80
 
 # Install node 12
 RUN apt-get update && apt-get install -y curl dirmngr apt-transport-https lsb-release ca-certificates
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_13.x | bash -
 RUN apt -y install nodejs
 
 # Set Nginx production config
@@ -21,7 +21,8 @@ WORKDIR /app/client
 COPY ./client-angular .
 
 # Install and cache app dependencies
-RUN npm install --production
+RUN npm install --production --quiet
 
 # Build the angular app
-RUN npx ng build --prod --delete-output-path --output-path=./build
+RUN npm install -g @angular/cli@9.1.1
+RUN ng build --prod=true --output-path=./build
