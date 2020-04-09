@@ -1,4 +1,5 @@
 <img src="./client-react/public/favicon/favicon-72.png" alt="JS Box logo" style="float: left;"/>
+
 # JS Box
 
 JS Box is a bolierplate Docker for MERN (MongoDB + Express + React + Node) OR MEAN (MongoDB + Express + Angular + Node), all served by Nginx.
