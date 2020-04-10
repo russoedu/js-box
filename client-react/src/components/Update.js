@@ -2,30 +2,29 @@ import React from 'react';
 import Service from './Service';
 import Form from './Form';
 
-export default class Update extends React.Component {
+class Update extends React.Component {
 
   constructor(props) {
-      super(props);
-      this.Service = new Service();
+    super(props);
+    this.Service = new Service();
 
-      //bind the instance to each method
-      // (So you can use the THIS statement. Otherwise, it will be null)
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
-      this.handleCancel = this.handleCancel.bind(this);
+    //bind the instance to each method
+    // (So you can use the THIS statement. Otherwise, it will be null)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
-      //set the initial state
-      this.state = {
-        _id: '',
-        desc: ''
-      };
+    //set the initial state
+    this.state = {
+      _id: '',
+      desc: ''
+    };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     //the parameter ID
-    let id =this.props.match.params.id;
+    let id = this.props.match.params.id;
     var thisRef = this;
-    this.Service.get(id, function(data){
+    this.Service.get(id, function (data) {
       thisRef.setState(data);
     });
   }
@@ -33,7 +32,7 @@ export default class Update extends React.Component {
   handleChange(event) {
     //updates the state only for this parameter
     //(_id stays the same)
-    this.setState({desc: event.target.value});
+    this.setState({ desc: event.target.value });
   }
 
   handleSubmit(event) {
@@ -44,7 +43,7 @@ export default class Update extends React.Component {
     this.Service.update(
       this.state.desc,
       this.state._id,
-      function() {
+      function () {
         thisRef.props.history.push('/');
       }
     );
@@ -53,12 +52,15 @@ export default class Update extends React.Component {
   render() {
     return (
       <Form
-        title="Edit Task"
+        task="Edit Task"
         action="Update"
         desc={this.state.desc}
+        id={this.state._id}
         onSubmit={this.handleSubmit}
         onChange={this.handleChange}
       />
     );
   }
 }
+
+export default Update

@@ -1,12 +1,23 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-export default class Form extends React.Component {
+class Form extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.handleCancel = this.handleCancel.bind(this);
+  }
+
   handleCancel(event) {
     event.preventDefault();
     this.props.history.push('/');
   }
 
   render() {
+    let hidden = '';
+    if (this.props.id) {
+      hidden = <input type="hidden" value={this.props.id} />
+    }
     return (
         <div className="card">
         <form onSubmit={this.props.onSubmit}>
@@ -15,6 +26,7 @@ export default class Form extends React.Component {
           </div>
           <div className="card-body">
             <p className="card-text">Task description</p>
+            {hidden}
             <input type="text" value={this.props.desc} onChange={this.props.onChange}  className="form-control"/>
           </div>
           <div className="card-body">
@@ -26,3 +38,5 @@ export default class Form extends React.Component {
     );
   }
 }
+
+export default withRouter(Form);
