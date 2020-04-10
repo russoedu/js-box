@@ -10,8 +10,8 @@ import { Input } from '@angular/core';
 export class FormComponent implements OnInit {
 
   @Input() task;
-  @Input() action;
   @Input() text;
+  @Input() action;
   // @Input() onSubmit;
   // @Input() hidden;
   // @Input() onChange;

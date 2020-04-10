@@ -1,22 +1,27 @@
 import React from 'react';
-import TodoService from './TodoService';
-import TodoForm from './TodoForm';
+import Service from './Service';
+import Form from './Form';
 
-export default class AddTodo extends React.Component {
+export default class Add extends React.Component {
   constructor(props) {
       super(props);
       this.state = {value: ''};
 
-      this.todoService = new TodoService();
+      this.Service = new Service();
 
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleCancel = this.handleCancel.bind(this);
     }
 
+    handleChange(event) {
+      event.preventDefault();
+      this.setState({value: event.target.value});
+    }
+
     handleSubmit(event) {
       event.preventDefault();
-      this.todoService.add(this.state.value,()=>{
+      this.Service.add(this.state.value,()=>{
         this.props.history.push('/');
       });
     }
@@ -26,14 +31,9 @@ export default class AddTodo extends React.Component {
       this.props.history.push('/');
     }
 
-    handleChange(event) {
-      event.preventDefault();
-      this.setState({value: event.target.value});
-    }
-
     render() {
       return (
-        <TodoForm
+        <Form
           task="Add Task"
           action="Add"
           onSubmit={this.handleSubmit}

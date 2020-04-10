@@ -2,22 +2,21 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Header from "./components/Header";
-import AddTodo from './components/AddTodo';
-import ListTodo from './components/ListTodo';
-import UpdateTodo from './components/UpdateTodo';
+import Add from './components/Add';
+import List from './components/List';
+import Update from './components/Update';
 
 export default class App extends React.Component {
   render() {
     return (
       <div>
         <Header/>
-        {/* <pre>{this.loading}</pre> */}
         <div className="container">
           <Router>
             <div>
-              <Route exact path='/' component={ListTodo} />
-              <Route path='/add' component={AddTodo} />
-              <Route path='/update/:id' component={UpdateTodo} />
+              <Route exact path='/' component={List} />
+              <Route path='/add' component={Add} />
+              <Route path='/update/:id' component={Update} />
             </div>
           </Router>
         </div>

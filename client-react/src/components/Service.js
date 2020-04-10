@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default class TodoService {
+export default class Service {
 
   all(callback) {
     axios.get('http://localhost/api/')

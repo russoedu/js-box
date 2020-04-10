@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class ListTodoRow extends React.Component {
+export default class ListRow extends React.Component {
   render() {
     return (
       <div className="list-group-item">

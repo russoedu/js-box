@@ -1,12 +1,12 @@
 import React from 'react';
-import TodoService from './TodoService';
-import TodoForm from './TodoForm';
+import Service from './Service';
+import Form from './Form';
 
-export default class UpdateTodo extends React.Component {
+export default class Update extends React.Component {
 
   constructor(props) {
       super(props);
-      this.todoService = new TodoService();
+      this.Service = new Service();
 
       //bind the instance to each method
       // (So you can use the THIS statement. Otherwise, it will be null)
@@ -25,7 +25,7 @@ export default class UpdateTodo extends React.Component {
     //the parameter ID
     let id =this.props.match.params.id;
     var thisRef = this;
-    this.todoService.get(id, function(data){
+    this.Service.get(id, function(data){
       thisRef.setState(data);
     });
   }
@@ -41,7 +41,7 @@ export default class UpdateTodo extends React.Component {
     //reference to the component "this"
     var thisRef = this;
     //Update in database
-    this.todoService.update(
+    this.Service.update(
       this.state.desc,
       this.state._id,
       function() {
@@ -57,7 +57,7 @@ export default class UpdateTodo extends React.Component {
 
   render() {
     return (
-      <TodoForm
+      <Form
         task="Edit Task"
         action="Update"
         onSubmit={this.handleSubmit}

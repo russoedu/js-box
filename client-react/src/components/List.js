@@ -1,12 +1,12 @@
 import React from 'react';
-import TodoService from './TodoService';
-import ListTodoRow from './ListTodoRow';
+import Service from './Service';
+import ListRow from './ListRow';
 
-export default class IndexItem extends React.Component {
+export default class List extends React.Component {
   constructor(props) {
       super(props);
       this.state = {items: ''};
-      this.todoService = new TodoService();
+      this.Service = new Service();
 
       //bind
       this.onDelete = this.onDelete.bind(this);
@@ -19,7 +19,7 @@ export default class IndexItem extends React.Component {
 
     fillData() {
       var thisRef = this;
-      this.todoService.all((data)=>{
+      this.Service.all((data)=>{
           thisRef.setState({ items: data });
       })
     }
@@ -29,7 +29,7 @@ export default class IndexItem extends React.Component {
 
         var thisRef = this;
         return this.state.items.map(function(object, i){
-            return <ListTodoRow onDelete={thisRef.onDelete} onUpdate={thisRef.onUpdate} obj={object} key={i} />;
+            return <ListRow onDelete={thisRef.onDelete} onUpdate={thisRef.onUpdate} obj={object} key={i} />;
         })
       }
     }
@@ -37,7 +37,7 @@ export default class IndexItem extends React.Component {
     onDelete(event) {
       let id = event.target.id;
       var thisRef = this;
-      this.todoService.delete(id,()=>{
+      this.Service.delete(id,()=>{
         thisRef.fillData();
       });
     }

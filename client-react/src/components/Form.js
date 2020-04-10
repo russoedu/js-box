@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class ListTodoRow extends React.Component {
+export default class Form extends React.Component {
   render() {
     let hidden = '';
     if (this.props.hidden) {

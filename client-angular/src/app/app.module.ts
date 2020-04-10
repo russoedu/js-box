@@ -8,6 +8,7 @@ import { ListComponent } from './list/list.component';
 import { ListRowComponent } from './list-row/list-row.component';
 import { FormComponent } from './form/form.component';
 import { UpdateComponent } from './update/update.component';
+import { AddComponent } from './add/add.component';
 
 @NgModule({
    declarations: [
@@ -16,7 +17,8 @@ import { UpdateComponent } from './update/update.component';
       ListComponent,
       ListRowComponent,
       FormComponent,
-      UpdateComponent
+      UpdateComponent,
+      AddComponent
    ],
    imports: [
       BrowserModule,
