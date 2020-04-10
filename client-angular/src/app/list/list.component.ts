@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { list } from './list';
 
 @Component({
@@ -10,13 +11,13 @@ export class ListComponent implements OnInit {
 
   list = list;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  add(): void {
-    alert('add')
+  add() {
+    this.router.navigate(['/add']);
   }
 
 }

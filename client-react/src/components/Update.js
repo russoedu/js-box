@@ -50,21 +50,14 @@ export default class Update extends React.Component {
     );
   }
 
-  handleCancel(event) {
-    event.preventDefault();
-    this.props.history.push('/');
-  }
-
   render() {
     return (
       <Form
-        task="Edit Task"
+        title="Edit Task"
         action="Update"
+        desc={this.state.desc}
         onSubmit={this.handleSubmit}
-        hidden={this.state._id}
-        text={this.state.desc}
         onChange={this.handleChange}
-        cancel={this.handleCancel}
       />
     );
   }

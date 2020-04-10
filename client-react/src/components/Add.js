@@ -5,7 +5,7 @@ import Form from './Form';
 export default class Add extends React.Component {
   constructor(props) {
       super(props);
-      this.state = {value: ''};
+      this.state = {desc: ''};
 
       this.Service = new Service();
 
@@ -15,31 +15,25 @@ export default class Add extends React.Component {
     }
 
     handleChange(event) {
-      event.preventDefault();
-      this.setState({value: event.target.value});
+      // event.preventDefault();
+      this.setState({desc: event.target.desc});
     }
 
     handleSubmit(event) {
       event.preventDefault();
-      this.Service.add(this.state.value,()=>{
+      this.Service.add(this.state.desc,()=>{
         this.props.history.push('/');
       });
-    }
-
-    handleCancel(event) {
-      event.preventDefault();
-      this.props.history.push('/');
     }
 
     render() {
       return (
         <Form
-          task="Add Task"
+          title="Add Task"
           action="Add"
+          desc={this.state.desc}
           onSubmit={this.handleSubmit}
-          text={this.state.value}
           onChange={this.handleChange}
-          cancel={this.handleCancel}
         />
       );
     }
