@@ -1,0 +1,21 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "env": {
+    "node" : true,
+    "browser": true,
+    "react": true
+  },
+  "rules": {
+    "no-unused-expressions": "off",
+    "no-var": 2,
+    "prefer-const": 2,
+    "object-curly-spacing": [2, "always"],
+    "no-unused-vars": ["error", { "varsIgnorePattern": "^env$" }]
+  }
+}

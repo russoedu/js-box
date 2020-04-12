@@ -10,10 +10,11 @@ router.route('/add').post((req, res) => {
   console.log('/add');
   var item = new TodoList(req.body);
   item.save()
-    .then(item => {
+    .then(() => {
       res.json('Added');
     })
     .catch(err => {
+      console.log(err);
       res.status(400).send("unable to save to database");
     });
 });
@@ -26,10 +27,12 @@ router.route('/update/:id').put((req, res) => {
     else {
       item.desc = req.body.desc;
 
-      item.save().then(item => {
-        res.json('Updated');
-      })
+      item.save()
+        .then(() => {
+          res.json('Updated');
+        })
         .catch(err => {
+          console.log(err);
           res.status(400).send("unable to update the database");
         });
     }
@@ -38,10 +41,15 @@ router.route('/update/:id').put((req, res) => {
 
 router.route('/delete/:id').put((req, res) => {
   console.log('/delete/:id');
-  TodoList.findByIdAndRemove({ _id: req.params.id },
-    (err, item) => {
-      if (err) res.json(err);
-      else res.json('Deleted');
+  var id = req.params.id;
+  TodoList.findByIdAndRemove(id, (err) => {
+      if (err) {
+      console.log(err);
+      res.status(400).json(err);
+      }
+      else {
+        res.json('Deleted');
+      }
     });
 });
 
@@ -49,7 +57,13 @@ router.route('/:id').post((req, res) => {
   console.log('/:id');
   var id = req.params.id;
   TodoList.findById(id, (err, item) => {
-    res.json(item);
+    if (err) {
+      console.log(err);
+      res.status(400).json(err);
+    }
+    else {
+      res.json(item);
+    }
   });
 });
 
@@ -59,6 +73,7 @@ router.route('/').post((req, res) => {
   TodoList.find((err, items) => {
     if (err) {
       console.log(err);
+      res.status(400).json(err);
     } else {
       res.json(items);
     }
