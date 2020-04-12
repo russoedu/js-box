@@ -13,32 +13,15 @@ export default class List extends React.Component {
     this.onUpdate = this.onUpdate.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
   }
+
   componentWillMount() {
     this.fillData();
   }
 
-  fillData() {
-    var thisRef = this;
-    this.Service.all((data) => {
-      thisRef.setState({ items: data });
-    })
-  }
-
-  tabRow() {
-    if (this.state.items instanceof Array) {
-
-      var thisRef = this;
-      return this.state.items.map(function (object, i) {
-        return <ListRow onDelete={thisRef.onDelete} onUpdate={thisRef.onUpdate} obj={object} key={i} />;
-      })
-    }
-  }
-
   onDelete(event) {
     let id = event.target.id;
-    var thisRef = this;
     this.Service.delete(id, () => {
-      thisRef.fillData();
+      this.fillData();
     });
   }
 
@@ -51,6 +34,20 @@ export default class List extends React.Component {
     this.props.history.push('/add');
   }
 
+  listRow() {
+    if (this.state.items instanceof Array) {
+      return this.state.items.map((item, index) => {
+        return <ListRow onDelete={this.onDelete} onUpdate={this.onUpdate} item={item} key={index} />;
+      })
+    }
+  }
+
+  fillData() {
+    this.Service.all((data) => {
+      this.setState({ items: data });
+    })
+  }
+
   render() {
     return (
       <div className="card">
@@ -61,7 +58,7 @@ export default class List extends React.Component {
           <p className="card-text alert alert-primary">Click on the task description to edit</p>
         </div>
         <div className="list-group">
-          {this.tabRow()}
+          {this.listRow()}
         </div>
         <div className="card-body">
           <button onClick={this.handleAdd} className="btn btn-info">New task</button>

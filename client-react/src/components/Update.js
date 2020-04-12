@@ -52,12 +52,11 @@ class Update extends React.Component {
   render() {
     return (
       <Form
-        task="Edit Task"
-        action="Update"
+        title="Edit Task"
+        submitTitle="Update"
         desc={this.state.desc}
-        id={this.state._id}
-        onSubmit={this.handleSubmit}
-        onChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
       />
     );
   }

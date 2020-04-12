@@ -30,10 +30,10 @@ class Add extends React.Component {
     return (
       <Form
         title="Add Task"
-        action="Add"
+        submitTitle="Add"
         desc={this.state.value}
-        onSubmit={this.handleSubmit}
-        onChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
       />
     );
   }
