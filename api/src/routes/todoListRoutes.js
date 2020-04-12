@@ -5,13 +5,10 @@ var router = express.Router();
 //Schema
 var TodoList = require('../models/TodoList');
 
+// TODO add error log
 router.route('/add').post((req, res) => {
   console.log('/add');
-  console.log(req);
-
   var item = new TodoList(req.body);
-  console.log(item);
-
   item.save()
     .then(item => {
       res.json('Added');
