@@ -5,9 +5,7 @@ var router = express.Router();
 //Schema
 var TodoList = require('../models/TodoList');
 
-// Get Specific
-// Add item
-router.route('/add').post(function (req, res) {
+router.route('/add').post((req, res) => {
   console.log('/add');
   console.log(req);
 
@@ -23,10 +21,9 @@ router.route('/add').post(function (req, res) {
     });
 });
 
-//  Update Specific
-router.route('/update/:id').put(function (req, res) {
+router.route('/update/:id').put((req, res) => {
   console.log('/update/:id');
-  TodoList.findById(req.params.id, function (err, item) {
+  TodoList.findById(req.params.id, (err, item) => {
     if (!item)
       return next(new Error('Could not load Document'));
     else {
@@ -42,29 +39,27 @@ router.route('/update/:id').put(function (req, res) {
   });
 });
 
-// Delete Specific
-router.route('/delete/:id').put(function (req, res) {
+router.route('/delete/:id').put((req, res) => {
   console.log('/delete/:id');
   TodoList.findByIdAndRemove({ _id: req.params.id },
-    function (err, item) {
+    (err, item) => {
       if (err) res.json(err);
       else res.json('Deleted');
     });
 });
 
-router.route('/:id').post(function (req, res) {
+router.route('/:id').post((req, res) => {
   console.log('/:id');
   var id = req.params.id;
-  TodoList.findById(id, function (err, item) {
+  TodoList.findById(id, (err, item) => {
     res.json(item);
   });
 });
 
-// Get All Items
-router.route('/').post(function (req, res) {
+router.route('/').post((req, res) => {
   console.log('/');
 
-  TodoList.find(function (err, items) {
+  TodoList.find((err, items) => {
     if (err) {
       console.log(err);
     } else {

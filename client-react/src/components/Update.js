@@ -21,7 +21,7 @@ class Update extends React.Component {
     //the parameter ID
     let id = this.props.match.params.id;
     var thisRef = this;
-    this.Service.get(id, function (data) {
+    this.Service.get(id, (data) => {
       thisRef.setState(data);
     });
   }
@@ -36,7 +36,7 @@ class Update extends React.Component {
     this.Service.update(
       this.state.desc,
       this.state._id,
-      function () {
+      () => {
         thisRef.props.history.push('/');
       }
     );
