@@ -2,7 +2,7 @@ import axios from 'axios';
 
 class Service {
   all(callback) {
-    axios.get(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/`)
+    axios.post(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/`)
     .then((response) => {
       callback(response.data);
     })
@@ -13,7 +13,7 @@ class Service {
   }
 
   get(id,callback) {
-    axios.get(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/${id}`)
+    axios.post(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/${id}`)
     .then((response) => {
       callback(response.data);
     })
@@ -28,7 +28,6 @@ class Service {
     desc: data
     })
     .then((response) =>  {
-      console.log(response);
       callback();
     })
     .catch((error) =>  {
@@ -38,25 +37,25 @@ class Service {
   }
 
   update(data, id, callback){
-    axios.post(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/update/${id}`, {
+    axios.put(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/update/${id}`, {
       desc: data
     })
     .then((response) =>  {
-      console.log('Updated');
       callback();
     })
-    .catch((response) =>  {
+    .catch((error) =>  {
+      console.log(error);
       callback();
     });
   }
 
   delete(id, callback){
-    axios.get(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/delete/${id}`)
+    axios.put(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/delete/${id}`)
     .then((response) => {
       callback();
     })
-    .catch((response) => {
-      console.log('Error deleting');
+    .catch((error) =>  {
+      console.log(error);
       callback();
     });
   }

@@ -24,7 +24,7 @@ router.route('/add').post(function (req, res) {
 });
 
 //  Update Specific
-router.route('/update/:id').post(function (req, res) {
+router.route('/update/:id').put(function (req, res) {
   console.log('/update/:id');
   TodoList.findById(req.params.id, function (err, item) {
     if (!item)
@@ -43,7 +43,7 @@ router.route('/update/:id').post(function (req, res) {
 });
 
 // Delete Specific
-router.route('/delete/:id').get(function (req, res) {
+router.route('/delete/:id').put(function (req, res) {
   console.log('/delete/:id');
   TodoList.findByIdAndRemove({ _id: req.params.id },
     function (err, item) {
@@ -52,7 +52,7 @@ router.route('/delete/:id').get(function (req, res) {
     });
 });
 
-router.route('/:id').all(function (req, res) {
+router.route('/:id').post(function (req, res) {
   console.log('/:id');
   var id = req.params.id;
   TodoList.findById(id, function (err, item) {
@@ -61,7 +61,7 @@ router.route('/:id').all(function (req, res) {
 });
 
 // Get All Items
-router.route('/').all(function (req, res) {
+router.route('/').post(function (req, res) {
   console.log('/');
 
   TodoList.find(function (err, items) {
