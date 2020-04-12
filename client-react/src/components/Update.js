@@ -3,13 +3,10 @@ import Service from './Service';
 import Form from './Form';
 
 class Update extends React.Component {
-
   constructor(props) {
     super(props);
     this.Service = new Service();
 
-    //bind the instance to each method
-    // (So you can use the THIS statement. Otherwise, it will be null)
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -30,16 +27,12 @@ class Update extends React.Component {
   }
 
   handleChange(event) {
-    //updates the state only for this parameter
-    //(_id stays the same)
     this.setState({ desc: event.target.value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    //reference to the component "this"
     var thisRef = this;
-    //Update in database
     this.Service.update(
       this.state.desc,
       this.state._id,

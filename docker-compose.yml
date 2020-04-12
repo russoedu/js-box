@@ -32,7 +32,7 @@ services:
       - ./.env
     environment:
       - NODE_ENV=${JS_BOX_ENVIRONMENT}
-      - REACT_APP_NINX_PORT=${JS_BOX_NGINX_PORT}
+      - REACT_APP_NGINX_PORT=${JS_BOX_NGINX_PORT}
     volumes:
       - /app/client/node_modules
       - /app/client/build

@@ -2,7 +2,7 @@ import React from 'react';
 import Service from './Service';
 import ListRow from './ListRow';
 
-export default class List extends React.Component {
+class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = { items: '' };
@@ -67,3 +67,5 @@ export default class List extends React.Component {
     );
   }
 }
+
+export default List

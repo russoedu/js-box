@@ -6,7 +6,7 @@ import Add from './components/Add';
 import List from './components/List';
 import Update from './components/Update';
 
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
     return (
       <div>
@@ -24,3 +24,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default App

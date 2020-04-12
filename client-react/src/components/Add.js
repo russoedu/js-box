@@ -3,7 +3,6 @@ import Service from './Service';
 import Form from './Form';
 
 class Add extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = { value: '' };

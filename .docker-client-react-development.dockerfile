@@ -2,10 +2,6 @@
 FROM node:13
 
 # Set default env vars
-ARG JS_BOX_ENVIRONMENT=development
-ARG JS_BOX_NGINX_HOST=localhost
-ARG JS_BOX_NGINX_PORT=80
-ENV NODE_ENV=development
 ENV CHOKIDAR_USEPOLLING=true
 
 # Set working directory as the client dir
