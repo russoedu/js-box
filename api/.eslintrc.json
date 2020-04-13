@@ -4,8 +4,7 @@
   },
   "extends": [
     "eslint:recommended",
-    "standard",
-    "plugin:node/recommended"
+    "standard"
   ],
   "env": {
     "node" : true
