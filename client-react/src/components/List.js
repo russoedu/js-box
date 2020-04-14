@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Service from './Service'
+import ApiService from './ApiService'
 import ListRow from './ListRow'
 
 class List extends React.Component {
   constructor (props) {
     super(props)
     this.state = { items: '' }
-    this.Service = new Service()
+    this.ApiService = new ApiService()
 
     // bind
     this.onDelete = this.onDelete.bind(this)
@@ -27,7 +27,7 @@ class List extends React.Component {
 
   onDelete (event) {
     const id = event.target.id
-    this.Service.delete(id, () => {
+    this.ApiService.delete(id, () => {
       this.fillData()
     })
   }
@@ -50,7 +50,7 @@ class List extends React.Component {
   }
 
   fillData () {
-    this.Service.all((data) => {
+    this.ApiService.all((data) => {
       this.setState({ items: data })
     })
   }

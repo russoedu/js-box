@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-class Service {
+class ApiService {
   all (callback) {
     axios.post(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/`)
       .then((response) => {
@@ -61,4 +61,4 @@ class Service {
   }
 }
 
-export default Service
+export default ApiService

@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Service from './Service'
+import ApiService from './ApiService'
 import Form from './Form'
 
 class Update extends React.Component {
   constructor (props) {
     super(props)
-    this.Service = new Service()
+    this.ApiService = new ApiService()
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -28,7 +28,7 @@ class Update extends React.Component {
     // the parameter ID
     const id = this.props.match.params.id
     const thisRef = this
-    this.Service.get(id, (data) => {
+    this.ApiService.get(id, (data) => {
       thisRef.setState(data)
     })
   }
@@ -40,7 +40,7 @@ class Update extends React.Component {
   handleSubmit (event) {
     event.preventDefault()
     const thisRef = this
-    this.Service.update(
+    this.ApiService.update(
       this.state.desc,
       this.state._id,
       () => {

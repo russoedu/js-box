@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Service from './Service'
+import ApiService from './ApiService'
 import Form from './Form'
 
 class Add extends React.Component {
@@ -8,7 +8,7 @@ class Add extends React.Component {
     super(props)
     this.state = { value: '' }
 
-    this.Service = new Service()
+    this.ApiService = new ApiService()
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -27,7 +27,7 @@ class Add extends React.Component {
 
   handleSubmit (event) {
     event.preventDefault()
-    this.Service.add(this.state.value, () => {
+    this.ApiService.add(this.state.value, () => {
       this.props.history.push('/')
     })
   }
