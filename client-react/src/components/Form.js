@@ -1,26 +1,39 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 
 class Form extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleCancel = this.handleCancel.bind(this);
+  constructor (props) {
+    super(props)
+    this.handleCancel = this.handleCancel.bind(this)
   }
 
-  handleCancel(event) {
-    event.preventDefault();
-    this.props.history.push('/');
+  static get propTypes () {
+    return {
+      title: PropTypes.string.isRequired,
+      desc: PropTypes.string.isRequired,
+      submitTitle: PropTypes.string.isRequired,
+      handleChange: PropTypes.func.isRequired,
+      handleSubmit: PropTypes.func.isRequired,
+      history: PropTypes.object
+    }
+  }
+
+  handleCancel (event) {
+    event.preventDefault()
+
+    this.props.history.push('/')
   }
 
   focusInput = (component) => {
     if (component) {
-      component.focus();
+      component.focus()
     }
   };
 
-  render() {
+  render () {
     return (
-        <div className="card">
+      <div className="card">
         <form onSubmit={this.props.handleSubmit}>
           <div className="card-header">
             <div className="panel-heading">
@@ -56,8 +69,8 @@ class Form extends React.Component {
           </div>
         </form>
       </div>
-    );
+    )
   }
 }
 
-export default withRouter(Form);
+export default withRouter(Form)

@@ -1,7 +1,16 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 class ListRow extends React.Component {
-  render() {
+  static get propTypes () {
+    return {
+      item: PropTypes.object.isRequired,
+      onDelete: PropTypes.func.isRequired,
+      onUpdate: PropTypes.func.isRequired
+    }
+  }
+
+  render () {
     return (
       <div className="list-group-item">
         <button
@@ -20,7 +29,7 @@ class ListRow extends React.Component {
           {this.props.item.desc}
         </span>
       </div>
-    );
+    )
   }
 }
 

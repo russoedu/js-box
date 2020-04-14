@@ -1,31 +1,38 @@
-import React from 'react';
-import Service from './Service';
-import Form from './Form';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Service from './Service'
+import Form from './Form'
 
 class Add extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: '' };
+  constructor (props) {
+    super(props)
+    this.state = { value: '' }
 
-    this.Service = new Service();
+    this.Service = new Service()
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange(event) {
-    event.preventDefault();
-    this.setState({ value: event.target.value });
+  static get propTypes () {
+    return {
+      history: PropTypes.object
+    }
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleChange (event) {
+    event.preventDefault()
+    this.setState({ value: event.target.value })
+  }
+
+  handleSubmit (event) {
+    event.preventDefault()
     this.Service.add(this.state.value, () => {
-      this.props.history.push('/');
-    });
+      this.props.history.push('/')
+    })
   }
 
-  render() {
+  render () {
     return (
       <Form
         title="Add Task"
@@ -34,7 +41,7 @@ class Add extends React.Component {
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
       />
-    );
+    )
   }
 }
 

@@ -1,63 +1,63 @@
-import axios from 'axios';
+import axios from 'axios'
 
 class Service {
-  all(callback) {
+  all (callback) {
     axios.post(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/`)
-    .then((response) => {
-      callback(response.data);
-    })
-    .catch((error) =>  {
-      console.log(error);
-      callback(null);
-    });
+      .then((response) => {
+        callback(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+        callback(null)
+      })
   }
 
-  get(id,callback) {
+  get (id, callback) {
     axios.post(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/${id}`)
-    .then((response) => {
-      callback(response.data);
-    })
-    .catch((error) =>  {
-      console.log(error);
-      callback(null);
-    });
+      .then((response) => {
+        callback(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+        callback(null)
+      })
   }
 
-  add(data,callback) {
+  add (data, callback) {
     axios.post(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/add/`, {
-    desc: data
+      desc: data
     })
-    .then((response) =>  {
-      callback();
-    })
-    .catch((error) =>  {
-      console.log(error);
-      callback();
-    });
+      .then(() => {
+        callback()
+      })
+      .catch((error) => {
+        console.log(error)
+        callback()
+      })
   }
 
-  update(data, id, callback){
+  update (data, id, callback) {
     axios.put(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/update/${id}`, {
       desc: data
     })
-    .then((response) =>  {
-      callback();
-    })
-    .catch((error) =>  {
-      console.log(error);
-      callback();
-    });
+      .then(() => {
+        callback()
+      })
+      .catch((error) => {
+        console.log(error)
+        callback()
+      })
   }
 
-  delete(id, callback){
+  delete (id, callback) {
     axios.put(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/delete/${id}`)
-    .then((response) => {
-      callback();
-    })
-    .catch((error) =>  {
-      console.log(error);
-      callback();
-    });
+      .then(() => {
+        callback()
+      })
+      .catch((error) => {
+        console.log(error)
+        callback()
+      })
   }
 }
 

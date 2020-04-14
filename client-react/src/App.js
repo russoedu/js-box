@@ -1,13 +1,13 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import Header from "./components/Header";
-import Add from './components/Add';
-import List from './components/List';
-import Update from './components/Update';
+import Header from './components/Header'
+import Add from './components/Add'
+import List from './components/List'
+import Update from './components/Update'
 
 class App extends React.Component {
-  render() {
+  render () {
     return (
       <div>
         <Header/>
@@ -21,7 +21,7 @@ class App extends React.Component {
           </Router>
         </div>
       </div>
-    );
+    )
   }
 }
 
