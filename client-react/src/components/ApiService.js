@@ -1,8 +1,11 @@
 import axios from 'axios'
 
+const baseUrl = `http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/`
+
 class ApiService {
+
   all (callback) {
-    axios.get(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/`)
+    axios.get(`${baseUrl}`)
       .then((response) => {
         callback(response.data)
       })
@@ -13,7 +16,7 @@ class ApiService {
   }
 
   get (id, callback) {
-    axios.get(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/${id}`)
+    axios.get(`${baseUrl}${id}`)
       .then((response) => {
         callback(response.data)
       })
@@ -24,7 +27,7 @@ class ApiService {
   }
 
   add (data, callback) {
-    axios.post(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/add/`, {
+    axios.post(`${baseUrl}add/`, {
       desc: data
     })
       .then(() => {
@@ -37,7 +40,7 @@ class ApiService {
   }
 
   update (data, id, callback) {
-    axios.put(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/update/${id}`, {
+    axios.put(`${baseUrl}update/${id}`, {
       desc: data
     })
       .then(() => {
@@ -50,7 +53,7 @@ class ApiService {
   }
 
   delete (id, callback) {
-    axios.put(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/delete/${id}`)
+    axios.put(`${baseUrl}delete/${id}`)
       .then(() => {
         callback()
       })
