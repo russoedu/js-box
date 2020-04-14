@@ -20,8 +20,8 @@ app.use(bodyParser.json())
 app.post('/add', TodoListController.add)
 app.put('/update/:id', TodoListController.update)
 app.put('/delete/:id', TodoListController.delete)
-app.post('/:id', TodoListController.get)
-app.post('/', TodoListController.getAll)
+app.get('/:id', TodoListController.get)
+app.get('/', TodoListController.getAll)
 
 app.listen(port, () => {
   console.log('Backend running on Port: ', port)

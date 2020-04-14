@@ -2,7 +2,7 @@ import axios from 'axios'
 
 class ApiService {
   all (callback) {
-    axios.post(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/`)
+    axios.get(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/`)
       .then((response) => {
         callback(response.data)
       })
@@ -13,7 +13,7 @@ class ApiService {
   }
 
   get (id, callback) {
-    axios.post(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/${id}`)
+    axios.get(`http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/${id}`)
       .then((response) => {
         callback(response.data)
       })
