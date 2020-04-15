@@ -5,7 +5,6 @@
 }
 
 #logo {
-  height: 75px;
   display: inline;
   margin: 16px 16px 0 0;
   filter: drop-shadow( 2px 2px 4px rgba(0, 0, 0, .5));
@@ -17,11 +16,9 @@
   line-height: 120px;
 }
 .btn-delete {
-  padding: 0px 6px 4px 6px;
-  font-size: 1.3rem;
-  line-height: 21px;
-  border-radius: .2rem;
-  margin-top: -9px;
+  margin: 0!important;
+  font-size: 40px!important;
+  padding: 1px 0 0 1px!important;
 }
 .item-description {
   cursor: pointer;
@@ -33,4 +30,8 @@
 .list-group-item {
   border-left: none;
     border-right: none;
+}
+#desc-input-alert {
+  margin-top: 10px;
+  margin-bottom: 0;
 }
