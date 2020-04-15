@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
-import { Router } from "@angular/router";
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -13,13 +12,9 @@ export class FormComponent implements OnInit {
   @Output() handleSubmit = new EventEmitter();
   // @Input() onChange;
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-  cancel(): void {
-    this.router.navigate(['/']);
   }
 
   submit() {

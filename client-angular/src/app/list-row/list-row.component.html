@@ -1,4 +1,2 @@
-<div>
-  <button class="btn btn-delete btn-danger bmd-btn-fab bmd-btn-fab-sm" [id]="item._id" (click)="delete()" type="button" value="Delete">&times;</button>
-  <span class="lead item-description" [id]="item._id" (click)="update()">{{ item.desc }}</span>
-</div>
+<button class="btn btn-delete btn-danger bmd-btn-fab bmd-btn-fab-sm" [id]="item._id" (click)="delete()" type="button" value="Delete">&times;</button>
+<span class="lead item-description" [id]="item._id" [routerLink]="['/update', this.item._id]">{{ item.desc }}</span>

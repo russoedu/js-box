@@ -21,8 +21,4 @@ export class ListRowComponent implements OnInit {
     alert('delete ' + this.item._id)
   }
 
-  update() {
-    this.router.navigate(['/update', this.item._id]);
-  }
-
 }
