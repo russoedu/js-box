@@ -6,7 +6,7 @@ class Form extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      emptyALert: false
+      emptyAlert: false
     }
     this.submit = this.submit.bind(this)
     this.closeAlert = this.closeAlert.bind(this)
@@ -24,6 +24,10 @@ class Form extends React.Component {
     }
   }
 
+  componentDidMount () {
+    this.descInput.focus()
+  }
+
   handleCancel (event) {
     event.preventDefault()
     this.props.history.push('/')
@@ -33,7 +37,7 @@ class Form extends React.Component {
     event.preventDefault()
     if (this.props.desc === '') {
       this.descInput.focus()
-      this.setState({ emptyALert: true })
+      this.setState({ emptyAlert: true })
     } else {
       return this.props.handleSubmit(event)
     }
@@ -41,16 +45,12 @@ class Form extends React.Component {
 
   closeAlert () {
     this.descInput.focus()
-    this.setState({ emptyALert: false })
-  }
-
-  componentDidMount () {
-    this.descInput.focus()
+    this.setState({ emptyAlert: false })
   }
 
   render () {
     let alert = ''
-    if (this.state.emptyALert) {
+    if (this.state.emptyAlert) {
       alert =
         <div className="alert alert-warning" id="desc-input-alert" role="alert">
           Task description can&apos;t be empty
