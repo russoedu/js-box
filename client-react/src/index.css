@@ -33,3 +33,7 @@
   border-left: none;
     border-right: none;
 }
+#desc-input-alert {
+  margin-top: 10px;
+  margin-bottom: 0;
+}

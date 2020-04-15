@@ -5,6 +5,11 @@ import { withRouter } from 'react-router-dom'
 class Form extends React.Component {
   constructor (props) {
     super(props)
+    this.state = {
+      emptyALert: false
+    }
+    this.submit = this.submit.bind(this)
+    this.closeAlert = this.closeAlert.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
   }
 
@@ -21,20 +26,42 @@ class Form extends React.Component {
 
   handleCancel (event) {
     event.preventDefault()
-
     this.props.history.push('/')
   }
 
-  focusInput = (component) => {
-    if (component) {
-      component.focus()
+  submit (event) {
+    event.preventDefault()
+    if (this.props.desc === '') {
+      this.descInput.focus()
+      this.setState({ emptyALert: true })
+    } else {
+      return this.props.handleSubmit(event)
     }
-  };
+  }
+
+  closeAlert () {
+    this.descInput.focus()
+    this.setState({ emptyALert: false })
+  }
+
+  componentDidMount () {
+    this.descInput.focus()
+  }
 
   render () {
+    let alert = ''
+    if (this.state.emptyALert) {
+      alert =
+        <div className="alert alert-warning" id="desc-input-alert" role="alert">
+          Task description can&apos;t be empty
+          <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={this.closeAlert}>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    }
     return (
       <div className="card">
-        <form onSubmit={this.props.handleSubmit}>
+        <form onSubmit={this.submit}>
           <div className="card-header">
             <div className="panel-heading">
               {this.props.title}
@@ -47,10 +74,11 @@ class Form extends React.Component {
             <input
               type="text"
               className="form-control"
-              ref={this.focusInput}
+              ref={(input) => { this.descInput = input }}
               value={this.props.desc}
               onChange={this.props.handleChange}
             />
+            {alert}
           </div>
           <div className="card-body">
             <button
