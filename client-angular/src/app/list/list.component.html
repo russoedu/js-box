@@ -6,9 +6,7 @@
     <p class="card-text alert alert-primary">Click on the task description to edit</p>
   </div>
   <div class="list-group">
-    <div *ngFor="let item of list">
-      <app-list-row [item]="item"></app-list-row>
-    </div>
+    <app-list-row *ngFor="let item of list" [item]="item" class="list-group-item"></app-list-row>
   </div>
   <div class="card-body">
     <button (click)="add()" class="btn btn-info">New task</button>

@@ -1,16 +1,35 @@
 <div class="card">
-  <form onSubmit=this.props.onSubmit>
+  <form (onSubmit)="submit()">
     <div class="card-header">
-      <div class="panel-heading">{{ task }}</div>
+      <div class="panel-heading">
+        {{ title }}
+      </div>
     </div>
     <div class="card-body">
-      <p class="card-text">Task description</p>
-      hidden
-      <input type="text" [value]="text" class="form-control"/>
+      <p class="card-text">
+        Task description
+      </p>
+      <input
+        type="text"
+        [value]="desc"
+        class="form-control"
+      />
     </div>
     <div class="card-body">
-      <button type="submit" class="btn btn-primary">{{ action }}</button>
-      <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
-    </div>
-  </form>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        >
+        {{ submitTitle }}
+      </button>
+      <button
+      type="button"
+      class="btn btn-default"
+      (click)="cancel()"
+      >
+      Cancel
+    </button>
+  </div>
+</form>
 </div>
+

@@ -11,7 +11,6 @@ class Update extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
 
-    // set the initial state
     this.state = {
       _id: '',
       desc: ''
@@ -25,7 +24,6 @@ class Update extends React.Component {
   }
 
   componentDidMount () {
-    // the parameter ID
     const id = this.props.match.params.id
     const thisRef = this
     this.ApiService.get(id, (data) => {

@@ -1,6 +1,7 @@
-<app-form
-task="Edit Task"
-action="Update"
+<app-form *ngIf="item"
+title="Edit Task"
+submitTitle="Update"
+[desc]="item.desc"
 ></app-form>
 
 <!-- [text]="this.desc" -->
