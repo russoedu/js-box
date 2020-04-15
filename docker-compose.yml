@@ -65,6 +65,9 @@ services:
     container_name: js-box-mongodb-${JS_BOX_ENVIRONMENT}-${JS_BOX_CLIENT}
     image: mongo:latest
     restart: always
+    environment:
+      - MONGODB_DATABASE=js-box
+      - MONGO_INITDB_DATABASE=js-box
     ports:
       - ${JS_BOX_MONGODB_PORT}:27017
     networks:

@@ -21,4 +21,10 @@ export class FormComponent implements OnInit {
   cancel(): void {
     this.router.navigate(['/']);
   }
+
+  submit() {
+    console.log(this.desc)
+    this.handleSubmit.emit(this.desc);
+  }
+
 }
