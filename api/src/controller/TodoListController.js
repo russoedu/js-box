@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 class TodoListController {
   static init () {
-    mongoose.connect('mongodb://mongodb')
+    mongoose.connect('mongodb://mongodb/js-box', { useNewUrlParser: true })
       .then(() => {
         console.log('MogoDB connected')
       })

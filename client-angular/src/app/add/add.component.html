@@ -1,6 +1,8 @@
 <app-form
-task="Add Task"
-action="Add"
+  title="Add Task"
+  submitTitle="Add"
+  [desc]="item.desc"
+  (submit)="handleSubmit()"
 ></app-form>
 
 <!-- [text]="this.desc" -->

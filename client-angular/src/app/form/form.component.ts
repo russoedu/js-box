@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
 import { Router } from "@angular/router";
-import { Input } from '@angular/core';
-
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -9,20 +7,24 @@ import { Input } from '@angular/core';
 })
 export class FormComponent implements OnInit {
 
-  @Input() task;
-  @Input() text;
-  @Input() action;
-  // @Input() onSubmit;
-  // @Input() hidden;
+  @Input() title: string;
+  @Input() submitTitle: string;
+  @Input() desc: string;
+  @Output() handleSubmit = new EventEmitter();
   // @Input() onChange;
-  // @Input() cancel;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
+
   cancel(): void {
     this.router.navigate(['/']);
+  }
+
+  submit() {
+    console.log(this.desc)
+    this.handleSubmit.emit(this.desc);
   }
 
 }

@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule }   from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +11,8 @@ import { FormComponent } from './form/form.component';
 import { UpdateComponent } from './update/update.component';
 import { AddComponent } from './add/add.component';
 import { HeaderComponent } from './header/header.component';
+import { HttpErrorHandler } from './http-error-handler.service';
+import { MessageService } from '../message.service';
 
 @NgModule({
    declarations: [
@@ -22,9 +26,14 @@ import { HeaderComponent } from './header/header.component';
    ],
    imports: [
       BrowserModule,
-      AppRoutingModule
+      AppRoutingModule,
+      HttpClientModule,
+      FormsModule
    ],
-   providers: [],
+   providers: [
+    HttpErrorHandler,
+    MessageService
+   ],
    bootstrap: [
       AppComponent
    ]
