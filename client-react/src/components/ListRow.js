@@ -15,7 +15,7 @@ class ListRow extends React.Component {
       <div className="list-group-item">
         <button
           id={this.props.item._id}
-          className="btn btn-danger btn-sm btn-delete"
+          className="btn btn-delete btn-danger bmd-btn-fab bmd-btn-fab-sm"
           value="Delete"
           onClick={this.props.onDelete}
         >
