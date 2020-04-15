@@ -54,7 +54,7 @@ class Form extends React.Component {
       alert =
         <div className="alert alert-warning" id="desc-input-alert" role="alert">
           Task description can&apos;t be empty
-          <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={this.closeAlert}>
+          <button type="button" className="close" aria-label="Close" onClick={this.closeAlert}>
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
