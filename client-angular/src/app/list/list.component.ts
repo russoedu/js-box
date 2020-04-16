@@ -31,5 +31,4 @@ export class ListComponent implements OnInit {
   add() {
     this.router.navigate(['/add']);
   }
-
 }

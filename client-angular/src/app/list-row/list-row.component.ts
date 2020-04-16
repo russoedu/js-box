@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from "@angular/router";
 
 import { ApiService } from '../api-service/api.service';
@@ -13,6 +12,7 @@ import { ApiService } from '../api-service/api.service';
 export class ListRowComponent implements OnInit {
 
   @Input() item;
+  @Output() handleDelete: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private router: Router,
@@ -27,7 +27,7 @@ export class ListRowComponent implements OnInit {
     this.apiService
       .delete(this.item._id)
       .subscribe(result => {
-        this.router.navigate(['/']);
+        this.handleDelete.emit();
       })
   }
 }

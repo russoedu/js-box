@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Input, Output, ElementRef, ViewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+// import { FormsModule } from '@angular/forms';
 
 import { Item } from '../api-service/item';
 
