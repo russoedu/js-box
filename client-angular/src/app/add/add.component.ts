@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+
 import { Item } from '../api-service/item';
 import { ApiService } from '../api-service/api.service';
-import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-add',
@@ -12,21 +13,20 @@ import { Router } from "@angular/router";
 export class AddComponent implements OnInit {
   item: Item
 
-  constructor(private router: Router, private apiService: ApiService) { }
+  constructor(
+    private router: Router,
+    private apiService: ApiService
+  ) { }
 
   ngOnInit() {
-    this.item = {
-      desc: ''
-    }
+    this.item = new Item('')
   }
 
-  handleSubmit(): void {
-    console.log('item', this.item)
+  save(): void {
     this.apiService
       .add(this.item)
       .subscribe(result => {
-        console.log(result)
+        this.router.navigate(['/']);
       })
-    this.router.navigate(['/']);
   }
 }

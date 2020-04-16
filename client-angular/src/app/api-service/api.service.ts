@@ -41,13 +41,24 @@ export class ApiService {
   }
 
   add (item: Item): Observable<string> {
-    console.log('ADD clicked');
-    console.log(item);
-
     return this.http.post<string>(`${apiUrl}add/`, item, httpOptions)
-      // .pipe(
-      //   catchError(this.handleError<string>('add'))
-      // )
+      .pipe(
+        catchError(this.handleError<string>('add'))
+      )
+  }
+
+  update (item: Item, id: string): Observable<string> {
+    return this.http.put<string>(`${apiUrl}update/${id}`, item, httpOptions)
+      .pipe(
+        catchError(this.handleError<string>('update'))
+      )
+  }
+
+  delete (id: String) {
+    return this.http.put<string>(`${apiUrl}delete/${id}`, httpOptions)
+      .pipe(
+        catchError(this.handleError<string>('delete'))
+      )
   }
 
 }

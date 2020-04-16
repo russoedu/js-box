@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { list } from './list';
 import { Item } from '../api-service/item';
 import { ApiService } from '../api-service/api.service';
 
@@ -13,7 +12,10 @@ import { ApiService } from '../api-service/api.service';
 export class ListComponent implements OnInit {
   list: Item[];
 
-  constructor(private router: Router, private apiService: ApiService) { }
+  constructor(
+    private router: Router,
+    private apiService: ApiService,
+  ) { }
 
   ngOnInit(): void {
     this.all();

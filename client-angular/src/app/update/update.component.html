@@ -1,9 +1,10 @@
 <app-form *ngIf="item"
-title="Edit Task"
-submitTitle="Update"
-[desc]="item.desc"
-></app-form>
-
+  title="Edit Task"
+  submitTitle="Update"
+  [item]="item"
+  (handleSubmit)="save()"
+>
+</app-form>
 <!-- [text]="this.desc" -->
 <!-- onSubmit=this.handleSubmit
 hidden=this.state._id

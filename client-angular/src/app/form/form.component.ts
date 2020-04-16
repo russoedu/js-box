@@ -1,25 +1,33 @@
-import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Input, Output, ElementRef, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+import { Item } from '../api-service/item';
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-
   @Input() title: string;
   @Input() submitTitle: string;
-  @Input() desc: string;
-  @Output() handleSubmit = new EventEmitter();
-  // @Input() onChange;
+  @Input() item: Item;
+  @Output() handleSubmit: EventEmitter<Item> = new EventEmitter<Item>();
+  @ViewChild('descInput') descInput: ElementRef;
 
-  constructor() { }
+  constructor(
+    private el: ElementRef
+    ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  ngAfterViewInit() {
+    console.log(this.descInput.nativeElement.value);
+    this.descInput.nativeElement.focus();
   }
 
-  submit() {
-    console.log(this.desc)
-    this.handleSubmit.emit(this.desc);
+  save(): void {
+    this.handleSubmit.emit();
   }
 
 }

@@ -1,5 +1,5 @@
 <div class="card">
-  <form (onSubmit)="submit()">
+  <form (ngSubmit)="save()">
     <div class="card-header">
       <div class="panel-heading">
         {{ title }}
@@ -9,27 +9,15 @@
       <p class="card-text">
         Task description
       </p>
-      <input
-        type="text"
-        [value]="this.desc"
-        class="form-control"
-      />
+      <input #descInput type="text" [(ngModel)]="item.desc" class="form-control" name="desc" />
     </div>
     <div class="card-body">
-      <button
-        type="submit"
-        class="btn btn-primary"
-      >
+      <button type="submit" class="btn btn-primary">
         {{ submitTitle }}
       </button>
-      <button
-        type="button"
-        class="btn btn-default"
-        [routerLink]="['/']"
-      >
+      <button type="button" class="btn btn-default" [routerLink]="['/']">
         Cancel
       </button>
     </div>
   </form>
 </div>
-

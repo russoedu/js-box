@@ -1,12 +1,8 @@
 <app-form
   title="Add Task"
   submitTitle="Add"
-  [desc]="item.desc"
-  (submit)="handleSubmit()"
-></app-form>
-
-<!-- [text]="this.desc" -->
-<!-- onSubmit=this.handleSubmit
-hidden=this.state._id
-onChange=this.handleChange
--->
+  [item]="item"
+  (handleSubmit)="save()"
+>
+</app-form>
+<!-- handleChange={this.handleChange} -->
