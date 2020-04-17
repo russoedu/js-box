@@ -22,7 +22,6 @@ export class FormComponent implements OnInit {
   ngOnInit(): void { }
 
   ngAfterViewInit() {
-    console.log(this.descInput.nativeElement.value);
     this.descInput.nativeElement.focus();
   }
 

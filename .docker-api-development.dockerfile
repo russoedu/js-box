@@ -1,21 +1,11 @@
 # base image
 FROM node:13
 
-# Set default env vars
-ARG JS_BOX_ENVIRONMENT=development
-ARG JS_BOX_NGINX_HOST=localhost
-ARG JS_BOX_NGINX_PORT=80
-
 # set working directory
 WORKDIR /app/api
-
-# Install and cache app dependencies
-COPY ./api/package.json ./package.json
-COPY ./api/package-lock.json ./package-lock.json
-RUN npm install --production --quiet
 
 # Install Nodemon
 RUN npm install -g nodemon
 
 # start app
-CMD ["nodemon", "app.js"]
+CMD nodemon app.js

@@ -1,10 +1,8 @@
 # base image
 FROM node:13
 
-# Set default env vars
-ARG JS_BOX_ENVIRONMENT=production
-ARG JS_BOX_NGINX_HOST=localhost
-ARG JS_BOX_NGINX_PORT=80
+# Set volumes to avoid replacement by host data
+VOLUME [ "/app/api/node_modules" ]
 
 # Set working directory
 WORKDIR /app/api
@@ -12,10 +10,10 @@ WORKDIR /app/api
 # Install and cache app dependencies
 COPY ./api/package.json ./package.json
 COPY ./api/package-lock.json ./package-lock.json
-RUN npm install --production --quiet
+RUN npm install --production
 
 # Install PM2
-RUN npm install -g pm2 --quiet
+RUN npm install -g pm2
 
 # start app
 CMD ["pm2-runtime", "app.js"]

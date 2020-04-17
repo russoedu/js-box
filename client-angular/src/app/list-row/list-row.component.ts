@@ -23,7 +23,6 @@ export class ListRowComponent implements OnInit {
   }
 
   delete(): void {
-    console.log('delete ' + this.item._id)
     this.apiService
       .delete(this.item._id)
       .subscribe(result => {

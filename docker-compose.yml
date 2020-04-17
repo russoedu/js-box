@@ -1,4 +1,4 @@
-version: "3.7"
+version: "2"
 services:
   nginx:
     container_name: js-box-nginx-${JS_BOX_ENVIRONMENT}-${JS_BOX_CLIENT}
@@ -15,7 +15,6 @@ services:
       - ${JS_BOX_NGINX_PORT}
     environment:
       - NGINX_HOST=${JS_BOX_NGINX_HOST}
-      - NGINX_PORT=8000
     command: /bin/bash -c "envsubst < /app/nginx/nginx-${JS_BOX_ENVIRONMENT}.conf > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
     depends_on:
       - client
@@ -24,6 +23,9 @@ services:
       - network
   client:
     container_name: js-box-client-${JS_BOX_ENVIRONMENT}-${JS_BOX_CLIENT}
+    extends:
+      file: ${JS_BOX_ENVIRONMENT}.yml
+      service: client
     build:
       context: .
       dockerfile: .docker-client-${JS_BOX_CLIENT}-${JS_BOX_ENVIRONMENT}.dockerfile
@@ -34,17 +36,17 @@ services:
       - NODE_ENV=${JS_BOX_ENVIRONMENT}
       - REACT_APP_NGINX_PORT=${JS_BOX_NGINX_PORT}
     volumes:
-      - /app/client/node_modules
-      - /app/client/build
       - ./client-${JS_BOX_CLIENT}:/app/client/
       - ./logs/client-${JS_BOX_CLIENT}:/app/logs
     depends_on:
       - api
-    stdin_open: true
     networks:
       - network
   api:
     container_name: js-box-api-${JS_BOX_ENVIRONMENT}-${JS_BOX_CLIENT}
+    extends:
+      file: ${JS_BOX_ENVIRONMENT}.yml
+      service: api
     build:
       context: .
       dockerfile: .docker-api-${JS_BOX_ENVIRONMENT}.dockerfile
@@ -53,7 +55,7 @@ services:
     env_file:
       - ./.env
     volumes:
-      - /app/api/node_modules
+      # - /app/api/node_modules
       - ./api:/app/api/
       - ./logs/api:/app/logs
     privileged: true
