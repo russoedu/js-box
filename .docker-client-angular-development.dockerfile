@@ -2,7 +2,7 @@
 FROM node:13
 
 # Env vars
-ARG JS_BOX_ANGULAR_PRODUCTION=false
+ENV JS_BOX_ANGULAR_PRODUCTION=false
 
 # Set working directory as the client dir
 WORKDIR /app/client

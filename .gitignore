@@ -107,4 +107,5 @@ dist
 build
 
 # Client env
-env
+environment.ts
+environment.prod.ts

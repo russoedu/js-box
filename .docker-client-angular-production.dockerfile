@@ -2,7 +2,7 @@
 FROM nginx
 
 # Set default env vars
-ARG JS_BOX_ANGULAR_PRODUCTION=true
+ENV JS_BOX_ANGULAR_PRODUCTION=true
 
 # Install node 13
 RUN apt-get update && apt-get install -y curl dirmngr apt-transport-https lsb-release ca-certificates gettext-base
@@ -17,6 +17,7 @@ WORKDIR /app/client
 
 # Copy source
 COPY ./client-angular .
+RUN touch ./src/environments/environment.ts
 
 # Install and cache app dependencies
 RUN npm install --quiet
