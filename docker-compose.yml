@@ -34,7 +34,6 @@ services:
       - ./.env
     environment:
       - NODE_ENV=${JS_BOX_ENVIRONMENT}
-      - REACT_APP_NGINX_PORT=${JS_BOX_NGINX_PORT}
     volumes:
       - ./logs/client-${JS_BOX_CLIENT}:/app/logs
     depends_on:
