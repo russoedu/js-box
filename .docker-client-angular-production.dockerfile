@@ -22,7 +22,7 @@ COPY ./client-angular .
 RUN npm install --quiet
 
 # Install Angular CLI
-RUN npm install -g @angular/cli@9.1.1
+RUN npm install -g @angular/cli@9 --quiet
 
 # Substitute env vars for the Angular app, build the Angular app and run
 CMD /bin/bash -c "envsubst < ./src/environments/environment-template.ts > ./src/environments/environment.prod.ts && ng build --prod=true --output-path=./build && exec nginx -g 'daemon off;'"

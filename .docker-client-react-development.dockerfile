@@ -8,4 +8,4 @@ WORKDIR /app/client
 RUN npm install -g react-scripts@3
 
 # Substitute environmnt vars and start the React app
-CMD envsubst < ./env-template > ./.env && react-scripts start
+CMD /bin/bash -c "envsubst < ./env-template > ./.env && react-scripts start"

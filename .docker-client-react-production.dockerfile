@@ -22,15 +22,7 @@ COPY ./client-react .
 RUN npm install --production --quiet
 
 # Install React CLI
-RUN npm install -g react-scripts@3
+RUN npm install -g react-scripts@3 --quiet
 
-# # Substitute env vars for the React app
-# RUN printenv
-# RUN cat env-template
-# RUN envsubst < env-template > .env
-# RUN cat .env
-
-# # Build the React app
-# RUN react-scripts build
-
+# Substitute env vars for the React app, build the React app and run
 CMD /bin/bash -c "envsubst < env-template > .env && react-scripts build && exec nginx -g 'daemon off;'"
