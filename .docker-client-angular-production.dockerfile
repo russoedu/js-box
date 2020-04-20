@@ -1,7 +1,10 @@
 # Latest Nginx as base image
 FROM nginx
 
-# Install node 12
+# Set default env vars
+ARG JS_BOX_ANGULAR_PRODUCTION=true
+
+# Install node 13
 RUN apt-get update && apt-get install -y curl dirmngr apt-transport-https lsb-release ca-certificates gettext-base
 RUN curl -sL https://deb.nodesource.com/setup_13.x | bash -
 RUN apt -y install nodejs
@@ -21,11 +24,5 @@ RUN npm install --quiet
 # Install Angular CLI
 RUN npm install -g @angular/cli@9.1.1
 
-# Substitute env vars for the Angular app
-RUN envsubst < ./src/environments/environment-template.ts > ./src/environments/environment.prod.ts
-
-# Build the Angular app
-RUN ng build --prod=true --output-path=./build
-
-# Set default env vars
-ENV JS_BOX_ANGULAR_PRODUCTION=true
+# Substitute env vars for the Angular app, build the Angular app and run
+CMD /bin/bash -c "envsubst < ./src/environments/environment-template.ts > ./src/environments/environment.prod.ts && ng build --prod=true --output-path=./build && exec nginx -g 'daemon off;'"

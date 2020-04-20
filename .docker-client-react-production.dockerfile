@@ -1,8 +1,11 @@
 # Latest Nginx as base image
 FROM nginx
 
-# Install node 12
-RUN apt-get update && apt-get install -y curl dirmngr apt-transport-https lsb-release ca-certificates
+
+
+
+# Install node 13
+RUN apt-get update && apt-get install -y curl dirmngr apt-transport-https lsb-release ca-certificates gettext-base
 RUN curl -sL https://deb.nodesource.com/setup_13.x | bash -
 RUN apt -y install nodejs
 
@@ -19,15 +22,15 @@ COPY ./client-react .
 RUN npm install --production --quiet
 
 # Install React CLI
-RUN npm install -g react-scripts
+RUN npm install -g react-scripts@3
 
-# Build the React app
-RUN react-scripts build
+# # Substitute env vars for the React app
+# RUN printenv
+# RUN cat env-template
+# RUN envsubst < env-template > .env
+# RUN cat .env
 
-# Set default env vars
-ENV REACT_APP_NGINX_PORT=${JS_BOX_NGINX_PORT}
-ENV REACT_APP_ENVIRONMENT=production
-ENV REACT_APP_CLIENT=${JS_BOX_CLIENT}
-ENV REACT_APP_NGINX_PORT=${JS_BOX_NGINX_PORT}
-ENV REACT_APP_NGINX_HOST=${JS_BOX_NGINX_HOST}
-ENV REACT_APP_MONGODB_PORT=${JS_BOX_MONGODB_PORT}
+# # Build the React app
+# RUN react-scripts build
+
+CMD /bin/bash -c "envsubst < env-template > .env && react-scripts build && exec nginx -g 'daemon off;'"

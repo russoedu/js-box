@@ -65,7 +65,7 @@ docker exec -it js-box-client-production-react /bin/bash
 or
 
 ```
-docker exec -it js-box-nginx /bin/bash
+docker exec -it js-box-nginx-production-react /bin/bash
 ```
 
 # Env vars
@@ -78,7 +78,9 @@ On the client-angular, in `src/environments`, edit the `environment-template.ts`
 
 ## React
 
-You need to expose the env vars on the `.docker-client-react-XXX.dockerfile` file, always adding `REACT_APP` in the begining of the var name so the React app is able to access it.
+On the client-react, edit the `env-template` file to include env vars you want to be able to acces in React.
+
+React only has access to vars if their name begons with `REACT_APP`.
 
 # Running
 
