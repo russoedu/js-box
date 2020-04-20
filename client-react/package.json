@@ -1,5 +1,5 @@
 {
-  "name": "js-box-client",
+  "name": "js-box-client-react",
   "version": "1.0.0",
   "description": "JS Box React client",
   "scripts": {
@@ -8,6 +8,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "private": true,
   "eslintConfig": {
     "extends": "react-app"
   },

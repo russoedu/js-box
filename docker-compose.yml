@@ -24,7 +24,7 @@ services:
   client:
     container_name: js-box-client-${JS_BOX_ENVIRONMENT}-${JS_BOX_CLIENT}
     extends:
-      file: ${JS_BOX_ENVIRONMENT}.yml
+      file: docker-compose-${JS_BOX_ENVIRONMENT}.yml
       service: client
     build:
       context: .
@@ -36,7 +36,6 @@ services:
       - NODE_ENV=${JS_BOX_ENVIRONMENT}
       - REACT_APP_NGINX_PORT=${JS_BOX_NGINX_PORT}
     volumes:
-      - ./client-${JS_BOX_CLIENT}:/app/client/
       - ./logs/client-${JS_BOX_CLIENT}:/app/logs
     depends_on:
       - api
@@ -45,7 +44,7 @@ services:
   api:
     container_name: js-box-api-${JS_BOX_ENVIRONMENT}-${JS_BOX_CLIENT}
     extends:
-      file: ${JS_BOX_ENVIRONMENT}.yml
+      file: docker-compose-${JS_BOX_ENVIRONMENT}.yml
       service: api
     build:
       context: .
@@ -55,8 +54,6 @@ services:
     env_file:
       - ./.env
     volumes:
-      # - /app/api/node_modules
-      - ./api:/app/api/
       - ./logs/api:/app/logs
     privileged: true
     depends_on:
