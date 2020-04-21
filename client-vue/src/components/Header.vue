@@ -2,13 +2,21 @@
   <header class="navbar navbar-expand">
         <a class="navbar-brand" href="/">
           <img id="logo" height="75px" src="/img/JS-box.svg" alt="JS Dock logo" />
-          <span class="title">JS Box {process.env.REACT_APP_CLIENT} - {process.env.REACT_APP_ENVIRONMENT}</span>
+          <span class="title">JS Box  {{client}} - {{environment}}</span>
         </a>
       </header>
 </template>
 
 <script>
+console.log(process.env)
+
 export default {
-  name: 'Header'
+  name: 'Header',
+  data () {
+    return {
+      client: process.env.VUE_APP_CLIENT,
+      environment: process.env.VUE_APP_ENVIRONMENT
+    }
+  }
 }
 </script>

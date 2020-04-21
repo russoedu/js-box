@@ -80,7 +80,13 @@ On the client-angular, in `src/environments`, edit the `environment-template.ts`
 
 On the client-react, edit the `env-template` file to include env vars you want to be able to acces in React.
 
-React only has access to vars if their name begons with `REACT_APP`.
+React only has access to vars if their name begins with `REACT_APP`.
+
+## Vue
+
+On the client-vue, edit the `env-template` file to include env vars you want to be able to acces in Vue.
+
+Vue only has access to vars if their name begins with `VUE_APP`.
 
 # Running
 
