@@ -4,9 +4,9 @@ services:
     stdin_open: true
     environment:
       - CHOKIDAR_USEPOLLING=true
-    # Expose the port for development purpose
     volumes:
       - ./client-${JS_BOX_CLIENT}:/app/client/
+    # Expose the port for development purpose
     ports:
       - "3000:3000"
   api:

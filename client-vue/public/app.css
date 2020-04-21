@@ -1,0 +1,37 @@
+.navbar {
+  margin-bottom: 16px;
+  height: 80px;
+  background-color: #a965bf;
+}
+
+#logo {
+  display: inline;
+  margin: 16px 16px 0 0;
+  filter: drop-shadow( 2px 2px 4px rgba(0, 0, 0, .5));
+}
+.title {
+  font-size: 1.3em;
+  color: #ffc266;
+  font-weight: bolder;
+  line-height: 120px;
+}
+.btn-delete {
+  margin: 0!important;
+  font-size: 40px!important;
+  padding: 1px 0 0 1px!important;
+}
+.item-description {
+  cursor: pointer;
+  padding-left: 10px;
+}
+.item-description:hover {
+  color: blue;
+}
+.list-group-item {
+  border-left: none;
+    border-right: none;
+}
+#desc-input-alert {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
