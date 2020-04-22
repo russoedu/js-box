@@ -157,6 +157,7 @@ It took me a while to understand Docker, what runs when, when the files from the
 # TODO / Wish list
 
 - [ ] Protect MongoDB with a password, as it can be accessed externally.
+- [ ] https://preactjs.com/
 - [ ] https://hapi.dev/
 - [ ] https://koajs.com/
 - [ ] Other DBs???
