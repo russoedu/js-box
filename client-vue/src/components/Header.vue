@@ -1,15 +1,13 @@
 <template>
   <header class="navbar navbar-expand">
         <a class="navbar-brand" href="/">
-          <img id="logo" height="75px" src="/img/JS-box.svg" alt="JS Dock logo" />
+          <img id="logo" height="75px" src="/img/JS-box.svg" alt="JS Box logo" />
           <span class="title">JS Box  {{client}} - {{environment}}</span>
         </a>
       </header>
 </template>
 
 <script>
-console.log(process.env)
-
 export default {
   name: 'Header',
   data () {

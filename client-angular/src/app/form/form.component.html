@@ -10,6 +10,12 @@
         Task description
       </p>
       <input #descInput type="text" [(ngModel)]="item.desc" class="form-control" name="desc" />
+      <div class="alert alert-warning" id="desc-input-alert" role="alert">
+        TODO: Task description can&apos;t be empty
+        <button type="button" class="close" aria-label="Close" onClick={this.closeAlert}>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     </div>
     <div class="card-body">
       <button type="submit" class="btn btn-primary">
