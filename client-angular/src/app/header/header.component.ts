@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   public client = '';
   public env = '';
   constructor() {
-    this.client = environment.JS_BOX_CLIENT;
+    this.client = environment.JS_BOX_CLIENT.charAt(0).toUpperCase() + environment.JS_BOX_CLIENT.substring(1)
     this.env = environment.JS_BOX_ENVIRONMENT;
   }
 
