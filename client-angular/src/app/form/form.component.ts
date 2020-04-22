@@ -14,19 +14,38 @@ export class FormComponent implements OnInit {
   @Input() item: Item;
   @Output() handleSubmit: EventEmitter<Item> = new EventEmitter<Item>();
   @ViewChild('descInput') descInput: ElementRef;
+  alert: boolean
 
   constructor(
     private el: ElementRef
-    ) { }
+    ) {}
 
-  ngOnInit(): void { }
-
-  ngAfterViewInit() {
-    this.descInput.nativeElement.focus();
+  ngOnInit(): void {
+    this.alert = false;
   }
 
-  save(): void {
-    this.handleSubmit.emit();
+  ngAfterViewInit() {
+    this.focusOnDesc();
+  }
+
+  submit(): void {
+    console.log(this.item.desc === '')
+    if (this.item.desc.trim() === '') {
+      this.alert = true;
+      this.focusOnDesc();
+  } else {
+      this.handleSubmit.emit();
+    }
+  }
+
+  closeAlert(): void {
+    this.alert = false;
+    this.focusOnDesc();
+  }
+
+  focusOnDesc(): void {
+    this.descInput.nativeElement.focus();
+
   }
 
 }

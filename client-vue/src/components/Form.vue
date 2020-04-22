@@ -69,14 +69,16 @@ export default {
   },
   methods: {
     submit (event) {
-      if (this.descLocal === '') {
+      if (this.descLocal.trim() === '') {
         this.alert = true
+        this.focusOnDesc()
       } else {
         this.handleSubmit(this.descLocal)
       }
     },
     closeAlert () {
       this.alert = false
+      this.focusOnDesc()
     },
     cancel () {
       this.$router.push('/')
