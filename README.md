@@ -30,6 +30,9 @@ JS_BOX_CLIENT=react
 JS_BOX_NGINX_PORT=80          # the Docker port that will be accessible externally
 JS_BOX_NGINX_HOST=localhost   # the URL to be accessible externally
 JS_BOX_MONGODB_PORT=9090      # The port to be able to access MongoDB externally
+### Only used for development mode
+JS_BOX_DEV_CLIENT_PORT=3000   # the Docker port in DEVELOPMENT mode that will let the client be accessible externally
+JS_BOX_DEV_API_PORT=4000      # the Docker port in DEVELOPMENT mode that will let the API be accessible externally
 ```
 
 ## Available external ports
@@ -38,7 +41,7 @@ Nginx main server accessible on the port defined in `JS_BOX_NGINX_PORT`.
 
 MongoDB accessible on the port defined in `JS_BOX_MONGODB_PORT`.
 
-In development mode, the client can be accessed on port `3000` and the API on port `4000`. In production mode, these ports are closed.
+In development mode, the client can be accessed on port `JS_BOX_DEV_CLIENT_PORT` and the API on port `JS_BOX_DEV_API_PORT`. **In production mode, these ports are closed**.
 
 # Development mode
 

@@ -8,11 +8,11 @@ services:
       - ./client-${JS_BOX_CLIENT}:/app/client/
     # Expose the port for development purpose
     ports:
-      - "3000:3000"
+      - "${JS_BOX_DEV_CLIENT_PORT}:3000"
   api:
     volumes:
       - ./api:/app/api/
     # Expose the port for development purpose
     ports:
-      - "4000:4000"
+      - "${JS_BOX_DEV_API_PORT}:4000"
 
