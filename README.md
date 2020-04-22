@@ -158,6 +158,7 @@ It took me a while to understand Docker, what runs when, when the files from the
 
 - [ ] Protect MongoDB with a password, as it can be accessed externally.
 - [ ] https://preactjs.com/
+- [ ] https://svelte.dev/
 - [ ] https://hapi.dev/
 - [ ] https://koajs.com/
 - [ ] Other DBs???
