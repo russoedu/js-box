@@ -6,8 +6,8 @@
         <div class="card-body">
           <p class="card-text alert alert-primary">Click on the task description to edit</p>
         </div>
-        <div class="list-group" v-for="item in items" :key="item._id">
-          <ListRow v-bind:item="item" v-bind:onUpdate="onUpdate" v-bind:onDelete="onDelete"/>
+        <div class="list-group" >
+          <ListRow v-for="item in items" :key="item._id" v-bind:item="item" v-bind:onUpdate="onUpdate" v-bind:onDelete="onDelete"/>
         </div>
         <div class="card-body">
           <router-link to="/add">
