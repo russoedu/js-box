@@ -48,7 +48,7 @@ Running in with `JS_BOX_ENVIRONMENT` as **development** uses the host's `node_mo
 npm install
 ```
 
-<a name="back2"></a>This will install all dependencies in the host machine that will be used by the Docker machine.<sup>[1](#footnote2)</sup>
+<a name="back2"></a>This will install all dependencies in the host machine that will be used by the Docker machine.<sup>[2](#footnote2)</sup>
 
 ## Accessing the machines
 
