@@ -2,13 +2,21 @@
 
 # JS Box
 
-JS Box is a bolierplate Docker for MERN (MongoDB + Express + React + Node) OR MEAN (MongoDB + Express + Angular + Node), all served by Nginx.
+JS Box is a bolierplate Docker for server + client + DB stacks.
 
-It is prepared to run both in **development** as in **production** mode, so you can easily create your project with a ready-made base. This should speed up the creation of Node apps using any of these stacks.
+The current version implements the following stacks:
 
-In the development mode, both server and client files are updated in Docker as they are changed in your host machine.
+- MERN ([MongoDB](https://www.mongodb.com/) + [Express](https://expressjs.com/) + [React](https://reactjs.org/) + [Node](https://nodejs.org/));
+- MEAN ([MongoDB](https://www.mongodb.com/) + [Express](https://expressjs.com/) + [Angular](https://angular.io/) + [Node](https://nodejs.org/));
+- MEVN ([MongoDB](https://www.mongodb.com/) + [Express](https://expressjs.com/) + [Vue](https://vuejs.org/) + [Node](https://nodejs.org/)).
 
-In the production mode, React is compiled and the static files are served through Nginx.
+All these versions are proxied by an [NGINX](https://www.nginx.com/) server. 
+
+JS Box is prepared to run both in **development** as in **production** mode, so you can easily create your project with a ready-made base. This should speed up the creation of client/server apps using any of these stacks.
+
+<a name="back1"></a>In the development mode, both server and client files are updated in Docker as they are changed in your host machine<sup>[1](#footnote1)</sup>.
+
+In the production mode, the client is compiled in the `build` folder and the static files are served through Nginx.
 
 # Configuration
 
@@ -16,41 +24,41 @@ To configure JS Box, make a copy of `.env example` and save it as `.env` and cha
 
 ```
 ### development OR production
-JS_BOX_ENVIRONMENT=production # development allows live reloading of client and server
-### react OR angular
+JS_BOX_ENVIRONMENT=production
+### react OR angular OR vue
 JS_BOX_CLIENT=react
-JS_BOX_NGINX_PORT=80          # the Docker port that will be accessible on the host
-JS_BOX_NGINX_HOST=localhost   # the URL of the system
-JS_BOX_MONGODB_PORT=9090      # The port to be able to access MongoDB on the host
+JS_BOX_NGINX_PORT=80          # the Docker port that will be accessible externally
+JS_BOX_NGINX_HOST=localhost   # the URL to be accessible externally
+JS_BOX_MONGODB_PORT=9090      # The port to be able to access MongoDB externally
 ```
 
 ## Available external ports
 
-Nginx main server accessible on the port defined in JS_BOX_NGINX_PORT
+Nginx main server accessible on the port defined in `JS_BOX_NGINX_PORT`.
 
-MongoDB accessible on the port defined in JS_BOX_MONGODB_PORT
+MongoDB accessible on the port defined in `JS_BOX_MONGODB_PORT`.
+
+In development mode, the client can be accessed on port `3000` and the API on port `4000`. In production mode, these ports are closed.
 
 # Development mode
 
-Running in with `JS_BOX_ENVIRONMENT` as development uses the host's `node_module` folder both for the clients and the API, so, before running `docker-compose up` you need to go to each folder (client and API) and run
+Running in with `JS_BOX_ENVIRONMENT` as **development** uses the host's `node_module` folder both for the client you chose and the API, so, before running `docker-compose up` you need to go to each folder (client and API) and run.
 
 ```
 npm install
 ```
 
-This will install all dependencies in the host machine that will be used by the Docker machine.
+<a name="back2"></a>This will install all dependencies in the host machine that will be used by the Docker machine.<sup>[1](#footnote2)</sup>
 
 ## Accessing the machines
 
-To access the Docker machines, you can use the command
+To access the Docker machines, you can use the command:
 
 ```
 docker exec -it js-box-DOCKER_NAME /bin/bash
 ```
 
-Replace `DOCKER_NAME` by the name and environemnt of the machine you wish to acces.
-
-I.e.
+Replace `DOCKER_NAME` by the name and environment of the machine you wish to access, I.e.:
 
 ```
 docker exec -it js-box-client-development-angular /bin/bash
@@ -68,52 +76,50 @@ or
 docker exec -it js-box-nginx-production-react /bin/bash
 ```
 
-# Env vars
+# Environment variables
 
-To expose environment vars, you need to edit some specific files:
+To expose env vars to the clients, you need to edit some specific files. The API doesn't need any configuration, all vars set in the `.env` file are accessible by the API app.
+
+JS Box replaces all vars set in the root `.env` with the ones set in these configs files using the special `${VAR_NAME}` variable.
 
 ## Angular
 
-On the client-angular, in `src/environments`, edit the `environment-template.ts` file to include env vars you want to be able to acces in Angular.
+On the client-angular, on `src/environments`, edit the `env-template.ts` file to include env vars you want to be able to access in Angular. 
 
 ## React
 
-On the client-react, edit the `env-template` file to include env vars you want to be able to acces in React.
+On the client-react, edit the `env-template` file to include env vars you want to be able to access in React.
 
-React only has access to vars if their name begins with `REACT_APP`.
+**React only has access to vars if their name begins with `REACT_APP`.**
 
 ## Vue
 
-On the client-vue, edit the `env-template` file to include env vars you want to be able to acces in Vue.
+On the client-vue, edit the `env-template` file to include env vars you want to be able to access in Vue.
 
-Vue only has access to vars if their name begins with `VUE_APP`.
+**Vue only has access to vars if their name begins with `VUE_APP`.**
 
 # Running
 
-After configuring the system, simply run
+After configuring the system via the `.env` file, run:
 
 ```
 docker-compose up --build -d
 ```
 
-Docker will build the images and containers and run in the background.
+Docker will build the containers and images and run in the background. Remove the `-d` option to run in the foreground. Use `CONTROL + C` to stop it. <sup>[more about Docker](#docker)</sup>
 
-To stop the containers, run
+To stop the containers, run:
 
 ```
 docker-compose stop
 ```
 
 
-If you want to delete ALL images and containers from Docker, you can run
+If you want to delete ALL images and containers from Docker, you can run:
 
 ```
-docker system prune -a
+prune
 ```
-
-# Available scripts
-
-While the containers are running you can easily access them using the provided `.bat` (Windows) or `.sh` (Unix) scripts.
 
 # Log files
 
@@ -121,6 +127,35 @@ Log files generated by the servers running on Docker will be also accessible on 
 
 Each server saves logs in their specific folder.
 
-# Wishlist
+# About
 
-[ ] find a way to expose env vars to React app that doesn't involve editing the `.dockerfile`!
+This project started as a learning process to better understand Docker, docker-compose. After creating the first version with [React](https://reactjs.org/), I decided to include [Angular](https://angular.io/), so I could better understand the differences.
+
+Later on, after everything was working, I decided to include [Vue](https://vuejs.org/).
+
+## Clients
+
+All the clients behave the same, with the same functionalities, the same ability to access environment variables (in different ways, check the instructions).
+
+I tried my best to name files, components and methods the same, use the same logical behaviour, but needed to adapt some parts where the frameworks differ.
+
+I have plans to keep expanding this project with new UI frameworks and maybe other backends, also.
+
+## Docker-compose version
+
+I decided to use docker-compose version 2 because it allows me to use `extends` and create different configurations for dev and prod. Version 3 lost this ability.
+
+<a name="docker"></a>
+
+## Docker
+
+It took me a while to understand Docker, what runs when, when the files from the host are mounted, when should I run npm install, when to run build.
+
+# TODO
+
+- [ ] Protect MongoDB with a password, as it can be accessed externally.
+
+# Footnotes
+
+<a name="footnote1">1</a>: Some issues might occour, mostly when installing new packages via NPM, as they might have different native version from your host machine and the Docker container. <sup>[back](#back1)</sup>
+<a name="footnote2">2</a>: In development mode, Docker executes `npm rebuild` before starting to make sure native dependencies are replaced to match the Docker container environment. <sup>[back](#back2)</sup>

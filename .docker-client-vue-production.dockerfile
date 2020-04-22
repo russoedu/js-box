@@ -1,9 +1,6 @@
 # Latest Nginx as base image
 FROM nginx
 
-# Set default env vars
-ENV JS_BOX_ANGULAR_PRODUCTION=true
-
 # Install node 13
 RUN apt-get update && apt-get install -y curl dirmngr apt-transport-https lsb-release ca-certificates gettext-base
 RUN curl -sL https://deb.nodesource.com/setup_13.x | bash -
@@ -16,14 +13,13 @@ COPY ./nginx/client-production.conf /etc/nginx/conf.d/default.conf
 WORKDIR /app/client
 
 # Copy source
-COPY ./client-angular .
-RUN touch ./src/environments/environment.ts
+COPY ./client-vue .
 
 # Install and cache app dependencies
 RUN npm install --quiet
 
-# Install Angular CLI
-RUN npm install -g @angular/cli@9 --quiet
+# Install Vue CLI
+RUN npm install -g @vue/cli@4 @vue/cli-service-global@4 --quiet
 
-# Substitute env vars for the Angular app, build the Angular app and run
-CMD /bin/bash -c "envsubst < ./src/environments/env-template.ts > ./src/environments/environment.prod.ts && ng build --prod=true --output-path=./build && exec nginx -g 'daemon off;'"
+# Substitute env vars for the Vue app, build the Vue app and run
+CMD /bin/bash -c "envsubst < env-template > .env && vue build src/main.js --dest build && exec nginx -g 'daemon off;'"
