@@ -154,9 +154,14 @@ I decided to use docker-compose version 2 because it allows me to use `extends` 
 
 It took me a while to understand Docker, what runs when, when the files from the host are mounted, when should I run npm install, when to run build.
 
-# TODO
+# TODO / Wish list
 
 - [ ] Protect MongoDB with a password, as it can be accessed externally.
+- [ ] https://hapi.dev/
+- [ ] https://koajs.com/
+- [ ] Other DBs???
+- [ ] https://lumen.laravel.com/ ???
+- [ ] Understand and maybe implement Webpack compilation on all versions
 
 # Footnotes
 
