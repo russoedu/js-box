@@ -12,7 +12,7 @@ export default {
   name: 'Header',
   data () {
     return {
-      client: process.env.VUE_APP_CLIENT,
+      client: process.env.VUE_APP_CLIENT.charAt(0).toUpperCase() + process.env.VUE_APP_CLIENT.substring(1),
       environment: process.env.VUE_APP_ENVIRONMENT
     }
   }
