@@ -10,7 +10,7 @@ class Form extends React.Component {
     }
     this.submit = this.submit.bind(this)
     this.closeAlert = this.closeAlert.bind(this)
-    this.handleCancel = this.handleCancel.bind(this)
+    this.cancel = this.cancel.bind(this)
   }
 
   static get propTypes () {
