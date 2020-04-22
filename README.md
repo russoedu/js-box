@@ -158,4 +158,5 @@ It took me a while to understand Docker, what runs when, when the files from the
 # Footnotes
 
 <a name="footnote1">1</a>: Some issues might occour, mostly when installing new packages via NPM, as they might have different native version from your host machine and the Docker container. <sup>[back](#back1)</sup>
+
 <a name="footnote2">2</a>: In development mode, Docker executes `npm rebuild` before starting to make sure native dependencies are replaced to match the Docker container environment. <sup>[back](#back2)</sup>
