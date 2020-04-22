@@ -164,6 +164,9 @@ It took me a while to understand Docker, what runs when, when the files from the
 - [ ] Other DBs???
 - [ ] https://lumen.laravel.com/ ???
 - [ ] Understand and maybe implement Webpack compilation on all versions
+- [ ] "Compile" - copy all configs selected to a single place
+- [ ] CLI - cli to generate the app only with the chosen configuration
+- [ ] Move each client / server to another git - see how much this complicates the whole development
 
 # Footnotes
 
