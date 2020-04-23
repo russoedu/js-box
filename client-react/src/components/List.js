@@ -12,7 +12,7 @@ class List extends React.Component {
     // bind
     this.onDelete = this.onDelete.bind(this)
     this.onUpdate = this.onUpdate.bind(this)
-    this.handleAdd = this.handleAdd.bind(this)
+    this.add = this.add.bind(this)
   }
 
   static get propTypes () {
@@ -23,6 +23,16 @@ class List extends React.Component {
 
   componentDidMount () {
     this.fillData()
+  }
+
+  fillData () {
+    this.ApiService.all((data) => {
+      this.setState({ items: data })
+    })
+  }
+
+  add () {
+    this.props.history.push('/add')
   }
 
   onDelete (event) {
@@ -37,22 +47,12 @@ class List extends React.Component {
     this.props.history.push('/update/' + id)
   }
 
-  handleAdd () {
-    this.props.history.push('/add')
-  }
-
   listRow () {
     if (this.state.items instanceof Array) {
       return this.state.items.map((item, index) => {
         return <ListRow onDelete={this.onDelete} onUpdate={this.onUpdate} item={item} key={index} />
       })
     }
-  }
-
-  fillData () {
-    this.ApiService.all((data) => {
-      this.setState({ items: data })
-    })
   }
 
   render () {
@@ -68,7 +68,7 @@ class List extends React.Component {
           {this.listRow()}
         </div>
         <div className="card-body">
-          <button onClick={this.handleAdd} className="btn btn-info">New task</button>
+          <button onClick={this.add} className="btn btn-info">New task</button>
         </div>
       </div>
     )

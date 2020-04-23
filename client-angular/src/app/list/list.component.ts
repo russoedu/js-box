@@ -18,10 +18,10 @@ export class ListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.all();
+    this.fillData();
   }
 
-  all(): void {
+  fillData(): void {
     this.apiService.all()
       .subscribe(items => {
         return (this.list = items)
