@@ -21,7 +21,7 @@
       <button type="submit" class="btn btn-primary">
         {{ submitTitle }}
       </button>
-      <button type="button" class="btn btn-default" [routerLink]="['/']">
+      <button type="button" class="btn btn-default" (click)="cancel()">
         Cancel
       </button>
     </div>

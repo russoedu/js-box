@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Input, Output, ElementRef, ViewChild } from '@angular/core';
-// import { FormsModule } from '@angular/forms';
+import { Router } from "@angular/router";
 
 import { Item } from '../api-service/item';
 
@@ -17,6 +17,7 @@ export class FormComponent implements OnInit {
   alert: boolean
 
   constructor(
+    private router: Router,
     private el: ElementRef
     ) {}
 
@@ -40,6 +41,10 @@ export class FormComponent implements OnInit {
   closeAlert(): void {
     this.alert = false;
     this.focusOnDesc();
+  }
+
+  cancel() {
+    this.router.navigate(['/']);
   }
 
   focusOnDesc(): void {
