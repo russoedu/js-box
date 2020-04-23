@@ -29,7 +29,6 @@ export class FormComponent implements OnInit {
   }
 
   submit(): void {
-    console.log(this.item.desc === '')
     if (this.item.desc.trim() === '') {
       this.alert = true;
       this.focusOnDesc();
