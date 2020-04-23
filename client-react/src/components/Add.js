@@ -6,7 +6,7 @@ import Form from './Form'
 class Add extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { value: '' }
+    this.state = { desc: '' }
 
     this.ApiService = new ApiService()
 
@@ -22,11 +22,11 @@ class Add extends React.Component {
 
   handleChange (event) {
     event.preventDefault()
-    this.setState({ value: event.target.value })
+    this.setState({ desc: event.target.value })
   }
 
   save () {
-    this.ApiService.add(this.state.value, () => {
+    this.ApiService.add(this.state.desc, () => {
       this.props.history.push('/')
     })
   }
@@ -36,7 +36,7 @@ class Add extends React.Component {
       <Form
         title="Add Task"
         submitTitle="Add"
-        desc={this.state.value}
+        desc={this.state.desc}
         handleChange={this.handleChange}
         handleSubmit={this.save}
       />
