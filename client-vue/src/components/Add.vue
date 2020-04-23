@@ -21,8 +21,8 @@ export default {
     }
   },
   methods: {
-    save (desc) {
-      ApiService.add(desc, () => {
+    save () {
+      ApiService.add(this.desc, () => {
         this.$router.push('/')
       })
     }

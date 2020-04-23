@@ -27,8 +27,8 @@ export default {
     })
   },
   methods: {
-    save (desc) {
-      ApiService.update(desc, this.item._id, () => {
+    save () {
+      ApiService.update(this.item.desc, this.item._id, () => {
         this.$router.push('/')
       })
     }
