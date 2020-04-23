@@ -3,7 +3,8 @@
     title="Edit Task"
     v-model="item.desc"
     submitTitle="Update"
-    v-bind:handleSubmit="handleSubmit" />
+    v-bind:handleSubmit="handleSubmit"
+  />
 </template>
 
 <script>

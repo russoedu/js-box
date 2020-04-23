@@ -1,9 +1,10 @@
 const TodoListModel = require('../models/TodoListModel')
 const mongoose = require('mongoose')
+require('dotenv').config()
 
 class TodoListController {
   static init () {
-    mongoose.connect('mongodb://mongodb/js-box', { useNewUrlParser: true })
+    mongoose.connect(`mongodb://${process.env.JS_BOX_MONGO_USERNAME}:${process.env.JS_BOX_MONGO_PASSWORD}@mongodb/js-box?authSource=admin`, { useNewUrlParser: true })
       .then(() => {
         console.log('MogoDB connected')
       })

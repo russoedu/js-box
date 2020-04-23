@@ -1,10 +1,20 @@
-### development OR production
-JS_BOX_ENVIRONMENT=production
-### react, angular OR vue
-JS_BOX_CLIENT=vue
-JS_BOX_NGINX_PORT=80
-JS_BOX_NGINX_HOST=localhost
-JS_BOX_MONGODB_PORT=9090
-### Only used for development mode
+###### ENVIRONMENT => development OR production
+JS_BOX_ENVIRONMENT=development
+
+###### CLIENT => react, angular OR vue
+JS_BOX_CLIENT=react
+
+###### EXTERNAL ACCESS => host, port and DB port
+JS_BOX_ACCESS_HOST=localhost
+JS_BOX_ACCESS_PORT=80
+JS_BOX_MONGODB_PORT=27017
+
+###### MONGO DB CONFIG => username and password
+JS_BOX_MONGO_USERNAME=admin
+JS_BOX_MONGO_PASSWORD=S3cret4ccessP4ssw0rd
+
+
+###### DEVELOPMENT ONLY EXTERNAL PORTS => ports to directly access client and API
 JS_BOX_DEV_CLIENT_PORT=3000
 JS_BOX_DEV_API_PORT=4000
+

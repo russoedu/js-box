@@ -14,7 +14,7 @@ const httpOptions = {
     'Content-Type':  'application/json',
   })
 };
-const apiUrl = `http://127.0.0.1:${environment.JS_BOX_NGINX_PORT}/api/`;
+const apiUrl = `http://127.0.0.1:${environment.JS_BOX_ACCESS_PORT}/api/`;
 
 @Injectable()
 export class ApiService {

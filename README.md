@@ -23,21 +23,30 @@ In the production mode, the client is compiled in the `build` folder and the sta
 To configure JS Box, make a copy of `.env example` and save it as `.env` and change the configurations to suit your needs.
 
 ```
-### development OR production
-JS_BOX_ENVIRONMENT=production
-### react OR angular OR vue
+###### ENVIRONMENT => development OR production
+JS_BOX_ENVIRONMENT=development
+
+###### CLIENT => react, angular OR vue
 JS_BOX_CLIENT=react
-JS_BOX_NGINX_PORT=80          # the Docker port that will be accessible externally
-JS_BOX_NGINX_HOST=localhost   # the URL to be accessible externally
-JS_BOX_MONGODB_PORT=9090      # The port to be able to access MongoDB externally
-### Only used for development mode
-JS_BOX_DEV_CLIENT_PORT=3000   # the Docker port in DEVELOPMENT mode that will let the client be accessible externally
-JS_BOX_DEV_API_PORT=4000      # the Docker port in DEVELOPMENT mode that will let the API be accessible externally
+
+###### EXTERNAL ACCESS => host, port and DB port
+JS_BOX_ACCESS_HOST=localhost                   # the URL to be accessible externally
+JS_BOX_ACCESS_PORT=80                          # the port that will be accessible externally
+JS_BOX_MONGODB_PORT=27017                      # The port to be able to access MongoDB externally
+
+###### MONGO DB CONFIG => username and password
+JS_BOX_MONGO_USERNAME=admin                    # MongoDB user name
+JS_BOX_MONGO_PASSWORD=S3cret4ccessP4ssw0rd     # Mongo DB password
+
+
+###### DEVELOPMENT ONLY EXTERNAL PORTS => ports to directly access client and API
+JS_BOX_DEV_CLIENT_PORT=3000
+JS_BOX_DEV_API_PORT=4000
 ```
 
 ## Available external ports
 
-Nginx main server accessible on the port defined in `JS_BOX_NGINX_PORT`.
+The main system is accessible on the host and port defined in `JS_BOX_ACCESS_HOST` and `JS_BOX_ACCESS_PORT`.
 
 MongoDB accessible on the port defined in `JS_BOX_MONGODB_PORT`.
 
@@ -156,7 +165,7 @@ It took me a while to understand Docker, what runs when, when the files from the
 
 # TODO / Wish list
 
-- [ ] Protect MongoDB with a password, as it can be accessed externally.
+- [x] Protect MongoDB with a password, as it can be accessed externally.
 - [ ] https://preactjs.com/
 - [ ] https://svelte.dev/
 - [ ] https://hapi.dev/
