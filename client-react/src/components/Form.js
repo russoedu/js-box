@@ -29,24 +29,23 @@ class Form extends React.Component {
     this.focusOnDesc()
   }
 
-  cancel (event) {
-    event.preventDefault()
-    this.props.history.push('/')
-  }
-
   submit (event) {
     event.preventDefault()
     if (this.props.desc.trim() === '') {
       this.setState({ alert: true })
       this.focusOnDesc()
     } else {
-      return this.props.handleSubmit(event)
+      return this.props.handleSubmit()
     }
   }
 
   closeAlert () {
-    this.focusOnDesc()
     this.setState({ alert: false })
+    this.focusOnDesc()
+  }
+
+  cancel (event) {
+    this.props.history.push('/')
   }
 
   focusOnDesc () {

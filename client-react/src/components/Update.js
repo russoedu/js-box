@@ -9,7 +9,7 @@ class Update extends React.Component {
     this.ApiService = new ApiService()
 
     this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.save = this.save.bind(this)
 
     this.state = {
       _id: '',
@@ -19,7 +19,8 @@ class Update extends React.Component {
 
   static get propTypes () {
     return {
-      match: PropTypes.object.isRequired
+      match: PropTypes.object.isRequired,
+      history: PropTypes.object
     }
   }
 
@@ -35,16 +36,10 @@ class Update extends React.Component {
     this.setState({ desc: event.target.value })
   }
 
-  handleSubmit (event) {
-    event.preventDefault()
-    const thisRef = this
-    this.ApiService.update(
-      this.state.desc,
-      this.state._id,
-      () => {
-        thisRef.props.history.push('/')
-      }
-    )
+  save () {
+    this.ApiService.update(this.state.desc, this.state._id, () => {
+      this.props.history.push('/')
+    })
   }
 
   render () {
@@ -53,7 +48,7 @@ class Update extends React.Component {
         title="Edit Task"
         submitTitle="Update"
         desc={this.state.desc}
-        handleSubmit={this.handleSubmit}
+        handleSubmit={this.save}
         handleChange={this.handleChange}
       />
     )

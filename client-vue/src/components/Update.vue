@@ -3,7 +3,7 @@
     title="Edit Task"
     v-model="item.desc"
     submitTitle="Update"
-    v-bind:handleSubmit="handleSubmit"
+    v-bind:handleSubmit="save"
   />
 </template>
 
@@ -27,7 +27,7 @@ export default {
     })
   },
   methods: {
-    handleSubmit (desc) {
+    save (desc) {
       ApiService.update(desc, this.item._id, () => {
         this.$router.push('/')
       })

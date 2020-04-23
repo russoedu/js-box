@@ -25,8 +25,7 @@ class Add extends React.Component {
     this.setState({ value: event.target.value })
   }
 
-  save (event) {
-    event.preventDefault()
+  save () {
     this.ApiService.add(this.state.value, () => {
       this.props.history.push('/')
     })

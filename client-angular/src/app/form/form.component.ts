@@ -49,7 +49,6 @@ export class FormComponent implements OnInit {
 
   focusOnDesc(): void {
     this.descInput.nativeElement.focus();
-
   }
 
 }
