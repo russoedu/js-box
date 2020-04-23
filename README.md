@@ -141,7 +141,7 @@ Each server saves logs in their specific folder.
 
 # About
 
-[Read more about this project](/blob/master/README.md)
+[Read more about this project](/ABOUT.md)
 
 # Footnotes
 
