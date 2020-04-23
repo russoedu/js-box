@@ -1,9 +1,9 @@
 <template>
   <Form
     title="Add Task"
-    v-model="desc"
     submitTitle="Add"
-    v-bind:handleSubmit="handleSubmit" />
+    v-model="desc"
+    v-bind:handleSubmit="save" />
 </template>
 
 <script>
@@ -21,7 +21,7 @@ export default {
     }
   },
   methods: {
-    handleSubmit (desc) {
+    save (desc) {
       ApiService.add(desc, () => {
         this.$router.push('/')
       })
