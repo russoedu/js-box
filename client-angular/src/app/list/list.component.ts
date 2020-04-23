@@ -31,4 +31,16 @@ export class ListComponent implements OnInit {
   add() {
     this.router.navigate(['/add']);
   }
+
+  onDelete(item): void {
+    this.apiService
+      .delete(item._id)
+      .subscribe(result => {
+        this.fillData();
+      })
+  }
+
+  onUpdate(item): void {
+    this.router.navigate(['/update/', item._id]);
+  }
 }

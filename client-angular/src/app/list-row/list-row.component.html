@@ -1,4 +1,4 @@
-<button 
+<button
   class="btn btn-delete btn-danger bmd-btn-fab bmd-btn-fab-sm"
   [id]="item._id"
   (click)="delete()"
@@ -10,7 +10,7 @@
 <span
   class="lead item-description"
   [id]="item._id"
-  [routerLink]="['/update', this.item._id]"
+  (click)="update()"
 >
   {{ item.desc }}
 </span>

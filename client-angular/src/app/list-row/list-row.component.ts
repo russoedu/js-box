@@ -12,7 +12,8 @@ import { ApiService } from '../api-service/api.service';
 export class ListRowComponent implements OnInit {
 
   @Input() item;
-  @Output() handleDelete: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onDelete: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onUpdate: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private router: Router,
@@ -23,10 +24,10 @@ export class ListRowComponent implements OnInit {
   }
 
   delete(): void {
-    this.apiService
-      .delete(this.item._id)
-      .subscribe(result => {
-        this.handleDelete.emit();
-      })
+    this.onDelete.emit();
+  }
+
+  update(): void {
+    this.onUpdate.emit();
   }
 }
