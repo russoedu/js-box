@@ -41,13 +41,13 @@ export default {
     add () {
       this.$router.push('add')
     },
-    onUpdate (event) {
-      this.$router.push(`update/${event.target.id}`)
-    },
     onDelete (event) {
       ApiService.delete(event.target.id, () => {
         this.fillData()
       })
+    },
+    onUpdate (event) {
+      this.$router.push(`update/${event.target.id}`)
     }
   }
 }
