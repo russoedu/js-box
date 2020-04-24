@@ -1,11 +1,20 @@
 import axios from 'axios'
 
 const baseUrl = `${process.env.REACT_APP_ACCESS_PROTOCOL}://${process.env.REACT_APP_ACCESS_HOST}:${process.env.REACT_APP_ACCESS_PORT}/api/`
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
 
 class ApiService {
+  axios = axios.create({
+    baseURL: `${process.env.REACT_APP_ACCESS_PROTOCOL}://${process.env.REACT_APP_ACCESS_HOST}:${process.env.REACT_APP_ACCESS_PORT}/api/`,
+    timeout: 1000,
+    xsrfCookieName: 'XSRF-TOKEN', // default
+    // `xsrfHeaderName` is the name of the http header that carries the xsrf token value
+    xsrfHeaderName: 'X-XSRF-TOKEN', // default
+  });
 
   all (callback) {
-    axios.get(`${baseUrl}`)
+    this.axios.get()
       .then((response) => {
         callback(response.data)
       })
@@ -27,7 +36,7 @@ class ApiService {
   }
 
   add (data, callback) {
-    axios.post(`${baseUrl}add/`, {
+    axios.post(`${baseUrl}`, {
       desc: data
     })
       .then(() => {
@@ -40,7 +49,7 @@ class ApiService {
   }
 
   update (data, id, callback) {
-    axios.put(`${baseUrl}update/${id}`, {
+    axios.put(`${baseUrl}${id}`, {
       desc: data
     })
       .then(() => {
@@ -53,7 +62,7 @@ class ApiService {
   }
 
   delete (id, callback) {
-    axios.put(`${baseUrl}delete/${id}`)
+    axios.delete(`${baseUrl}${id}`)
       .then(() => {
         callback()
       })
