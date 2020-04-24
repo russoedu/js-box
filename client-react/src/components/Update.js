@@ -28,7 +28,8 @@ class Update extends React.Component {
     const id = this.props.match.params.id
     const thisRef = this
     this.ApiService.get(id, (data) => {
-      thisRef.setState(data)
+      const desc = this.ApiService.decodeHTML(data.desc)
+      thisRef.setState({ _id: id, desc })
     })
   }
 
@@ -37,6 +38,8 @@ class Update extends React.Component {
   }
 
   updateItem () {
+    console.log(this.state);
+
     this.ApiService.update(this.state.desc, this.state._id, () => {
       this.props.history.push('/')
     })

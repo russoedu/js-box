@@ -49,6 +49,7 @@ class List extends React.Component {
   listRow () {
     if (this.state.items instanceof Array) {
       return this.state.items.map((item, index) => {
+        item.desc = this.ApiService.decodeHTML(item.desc)
         return <ListRow ref={this.itemRef} onDelete={this.deleteItem} onUpdate={this.updateItem} item={item} key={index} />
       })
     }

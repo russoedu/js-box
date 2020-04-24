@@ -28,6 +28,8 @@ class TodoListController {
 
   static add (req, res) {
     console.log('add')
+    console.log(req.body);
+
     const item = new TodoListModel(req.body)
     item.save()
       .then(() => {

@@ -1,3 +1,4 @@
+const { check } = require('express-validator');
 const morgan = require('morgan')
 const helmet = require('helmet')
 const fs = require('fs')
@@ -29,9 +30,9 @@ class AppController {
     TodoListController.init()
 
     app.get('/:id', TodoListController.get)
-    app.put('/:id', TodoListController.update)
+    app.put('/:id', [ check('desc').isLength({ min: 1 }).trim().escape() ], TodoListController.update)
     app.delete('/:id', TodoListController.delete)
-    app.post('/', TodoListController.add)
+    app.post('/', [ check('desc').isLength({ min: 1 }).trim().escape() ], TodoListController.add)
     app.get('/', TodoListController.all)
   }
 
