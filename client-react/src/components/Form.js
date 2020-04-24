@@ -1,5 +1,4 @@
 import React from 'react'
-import { createBrowserHistory } from 'history'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 

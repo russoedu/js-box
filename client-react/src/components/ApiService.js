@@ -3,8 +3,9 @@ import axios from 'axios'
 const apiUrl = `${process.env.REACT_APP_ACCESS_PROTOCOL}://${process.env.REACT_APP_ACCESS_HOST}:${process.env.REACT_APP_ACCESS_PORT}/api/`
 
 class ApiService {
+
   all (callback) {
-    this.axios.get(apiUrl)
+    axios.get(apiUrl)
       .then((response) => {
         callback(response.data)
       })

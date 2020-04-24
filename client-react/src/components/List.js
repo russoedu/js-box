@@ -38,9 +38,7 @@ class List extends React.Component {
 
   deleteItem (event) {
     const id = event.target.id
-    this.ApiService.delete(id, () => {
-      this.getItems()
-    })
+    this.ApiService.delete(id, () => this.getItems())
   }
 
   updateItem (event) {
@@ -48,13 +46,15 @@ class List extends React.Component {
     this.props.history.push('/update/' + id)
   }
 
-  render () {
-    const items = []
+  listRow () {
     if (this.state.items instanceof Array) {
-      this.state.items.map((item, index) => {
-        items.push(<ListRow ref={this.itemRef} onDelete={this.deleteItem} onUpdate={this.updateItem} item={item} key={index} />)
+      return this.state.items.map((item, index) => {
+        return <ListRow ref={this.itemRef} onDelete={this.deleteItem} onUpdate={this.updateItem} item={item} key={index} />
       })
     }
+  }
+
+  render () {
     return (
       <div className="card">
         <div className="card-header">
@@ -64,7 +64,7 @@ class List extends React.Component {
           <p className="card-text alert alert-primary">Click on the task description to edit</p>
         </div>
         <div className="list-group">
-          {items}
+          {this.listRow()}
         </div>
         <div className="card-body">
           <button onClick={this.addItem} className="btn btn-info">New task</button>
