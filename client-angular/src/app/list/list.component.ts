@@ -18,29 +18,31 @@ export class ListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.fillData();
+    this.getItems();
   }
 
-  fillData(): void {
+  getItems(): void {
     this.apiService.all()
       .subscribe(items => {
         return (this.list = items)
       });
   }
 
-  add() {
+  addItem() {
     this.router.navigate(['/add']);
   }
 
-  onDelete(item): void {
+  deleteItem(item): void {
+    const id = item._id;
     this.apiService
-      .delete(item._id)
+      .delete(id)
       .subscribe(result => {
-        this.fillData();
+        this.getItems();
       })
   }
 
-  onUpdate(item): void {
-    this.router.navigate(['/update/', item._id]);
+  updateItem(item): void {
+    const id = item._id;
+    this.router.navigate(['/update/', id]);
   }
 }

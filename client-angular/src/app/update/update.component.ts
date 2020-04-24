@@ -40,7 +40,7 @@ export class UpdateComponent implements OnInit {
     }
   }
 
-  save(): void {
+  updateItem(): void {
     this.apiService
       .update(this.item, this.id)
       .subscribe(result => {

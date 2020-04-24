@@ -22,7 +22,7 @@ export class AddComponent implements OnInit {
     this.item = new Item('')
   }
 
-  save(): void {
+  addItem(): void {
     this.apiService
       .add(this.item)
       .subscribe(result => {
