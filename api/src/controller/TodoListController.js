@@ -14,8 +14,20 @@ class TodoListController {
       })
   }
 
+  static all (req, res) {
+    console.log('all')
+    TodoListModel.find((err, items) => {
+      if (err) {
+        console.log(err)
+        res.status(400).json(err)
+      } else {
+        res.json(items)
+      }
+    })
+  }
+
   static add (req, res) {
-    console.log('/add')
+    console.log('add')
     const item = new TodoListModel(req.body)
     item.save()
       .then(() => {
@@ -27,8 +39,21 @@ class TodoListController {
       })
   }
 
+  static get (req, res) {
+    console.log('get', req.params.id)
+    const id = req.params.id
+    TodoListModel.findById(id, (err, item) => {
+      if (err) {
+        console.log(err)
+        res.status(400).json(err)
+      } else {
+        res.json(item)
+      }
+    })
+  }
+
   static update (req, res) {
-    console.log('/update/:id', req.params.id)
+    console.log('update', req.params.id)
     TodoListModel.findById(req.params.id, (err, item) => {
       if (err || !item) {
         console.log(err)
@@ -49,7 +74,7 @@ class TodoListController {
   }
 
   static delete (req, res) {
-    console.log('/delete/:id', req.params.id)
+    console.log('delete', req.params.id)
     const id = req.params.id
     TodoListModel.findByIdAndRemove(id, (err) => {
       if (err) {
@@ -57,31 +82,6 @@ class TodoListController {
         res.status(400).json(err)
       } else {
         res.json('Deleted')
-      }
-    })
-  }
-
-  static get (req, res) {
-    console.log('/:id', req.params.id)
-    const id = req.params.id
-    TodoListModel.findById(id, (err, item) => {
-      if (err) {
-        console.log(err)
-        res.status(400).json(err)
-      } else {
-        res.json(item)
-      }
-    })
-  }
-
-  static getAll (req, res) {
-    console.log('/')
-    TodoListModel.find((err, items) => {
-      if (err) {
-        console.log(err)
-        res.status(400).json(err)
-      } else {
-        res.json(items)
       }
     })
   }

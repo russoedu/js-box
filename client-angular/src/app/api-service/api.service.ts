@@ -24,14 +24,21 @@ export class ApiService {
     this.handleError = httpErrorHandler.createHandleError('ApiService');
   }
 
-  all(): Observable<Item[]> {
+  all (): Observable<Item[]> {
     return this.http.get<Item[]>(apiUrl)
       .pipe(
         catchError(this.handleError('get', []))
       );
   }
 
-  get(id: string): Observable<Item> {
+  add (item: Item): Observable<string> {
+    return this.http.post<string>(apiUrl, item, httpOptions)
+      .pipe(
+        catchError(this.handleError<string>('add'))
+      )
+  }
+
+  get (id: string): Observable<Item> {
     id = id.trim();
 
     return this.http.get<Item>(`${apiUrl}${id}`)
@@ -40,22 +47,15 @@ export class ApiService {
       );
   }
 
-  add (item: Item): Observable<string> {
-    return this.http.post<string>(`${apiUrl}add/`, item, httpOptions)
-      .pipe(
-        catchError(this.handleError<string>('add'))
-      )
-  }
-
   update (item: Item, id: string): Observable<string> {
-    return this.http.put<string>(`${apiUrl}update/${id}`, item, httpOptions)
+    return this.http.put<string>(`${apiUrl}${id}`, item, httpOptions)
       .pipe(
         catchError(this.handleError<string>('update'))
       )
   }
 
   delete (id: String) {
-    return this.http.put<string>(`${apiUrl}delete/${id}`, httpOptions)
+    return this.http.delete<string>(`${apiUrl}${id}`, httpOptions)
       .pipe(
         catchError(this.handleError<string>('delete'))
       )

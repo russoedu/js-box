@@ -32,7 +32,7 @@ class AppController {
     app.put('/:id', TodoListController.update)
     app.delete('/:id', TodoListController.delete)
     app.post('/', TodoListController.add)
-    app.get('/', TodoListController.getAll)
+    app.get('/', TodoListController.all)
   }
 
   static startServer (app, port, logPath) {

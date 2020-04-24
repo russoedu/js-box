@@ -1,22 +1,11 @@
 <script>
 import axios from 'axios'
 
-const baseUrl = `${process.env.VUE_APP_ACCESS_PROTOCOL}://${process.env.VUE_APP_ACCESS_HOST}:${process.env.VUE_APP_ACCESS_PORT}/api/`
+const apiUrl = `${process.env.VUE_APP_ACCESS_PROTOCOL}://${process.env.VUE_APP_ACCESS_HOST}:${process.env.VUE_APP_ACCESS_PORT}/api/`
 
 export default {
   all (callback) {
-    axios.get(`${baseUrl}`)
-      .then((response) => {
-        callback(response.data)
-      })
-      .catch((error) => {
-        console.log(error)
-        callback(null)
-      })
-  },
-
-  get (id, callback) {
-    axios.get(`${baseUrl}${id}`)
+    axios.get(apiUrl)
       .then((response) => {
         callback(response.data)
       })
@@ -27,7 +16,7 @@ export default {
   },
 
   add (data, callback) {
-    axios.post(`${baseUrl}add/`, {
+    axios.post(apiUrl, {
       desc: data
     })
       .then(() => {
@@ -39,8 +28,19 @@ export default {
       })
   },
 
+  get (id, callback) {
+    axios.get(`${apiUrl}${id}`)
+      .then((response) => {
+        callback(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+        callback(null)
+      })
+  },
+
   update (data, id, callback) {
-    axios.put(`${baseUrl}update/${id}`, {
+    axios.put(`${apiUrl}${id}`, {
       desc: data
     })
       .then(() => {
@@ -53,7 +53,7 @@ export default {
   },
 
   delete (id, callback) {
-    axios.put(`${baseUrl}delete/${id}`)
+    axios.delete(`${apiUrl}${id}`)
       .then(() => {
         callback()
       })

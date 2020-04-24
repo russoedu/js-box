@@ -1,31 +1,10 @@
 import axios from 'axios'
 
-const baseUrl = `${process.env.REACT_APP_ACCESS_PROTOCOL}://${process.env.REACT_APP_ACCESS_HOST}:${process.env.REACT_APP_ACCESS_PORT}/api/`
-axios.defaults.xsrfCookieName = 'csrftoken'
-axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
+const apiUrl = `${process.env.REACT_APP_ACCESS_PROTOCOL}://${process.env.REACT_APP_ACCESS_HOST}:${process.env.REACT_APP_ACCESS_PORT}/api/`
 
 class ApiService {
-  axios = axios.create({
-    baseURL: `${process.env.REACT_APP_ACCESS_PROTOCOL}://${process.env.REACT_APP_ACCESS_HOST}:${process.env.REACT_APP_ACCESS_PORT}/api/`,
-    timeout: 1000,
-    xsrfCookieName: 'XSRF-TOKEN', // default
-    // `xsrfHeaderName` is the name of the http header that carries the xsrf token value
-    xsrfHeaderName: 'X-XSRF-TOKEN', // default
-  });
-
   all (callback) {
-    this.axios.get()
-      .then((response) => {
-        callback(response.data)
-      })
-      .catch((error) => {
-        console.log(error)
-        callback(null)
-      })
-  }
-
-  get (id, callback) {
-    axios.get(`${baseUrl}${id}`)
+    this.axios.get(apiUrl)
       .then((response) => {
         callback(response.data)
       })
@@ -36,7 +15,7 @@ class ApiService {
   }
 
   add (data, callback) {
-    axios.post(`${baseUrl}`, {
+    axios.post(apiUrl, {
       desc: data
     })
       .then(() => {
@@ -48,8 +27,19 @@ class ApiService {
       })
   }
 
+  get (id, callback) {
+    axios.get(`${apiUrl}${id}`)
+      .then((response) => {
+        callback(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+        callback(null)
+      })
+  }
+
   update (data, id, callback) {
-    axios.put(`${baseUrl}${id}`, {
+    axios.put(`${apiUrl}${id}`, {
       desc: data
     })
       .then(() => {
@@ -62,7 +52,7 @@ class ApiService {
   }
 
   delete (id, callback) {
-    axios.delete(`${baseUrl}${id}`)
+    axios.delete(`${apiUrl}${id}`)
       .then(() => {
         callback()
       })
