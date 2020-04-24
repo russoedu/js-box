@@ -1,5 +1,5 @@
-const { check } = require('express-validator');
 const morgan = require('morgan')
+const { check } = require('express-validator');
 const helmet = require('helmet')
 const fs = require('fs')
 const path = require('path')
@@ -29,10 +29,12 @@ class AppController {
   static setRoutes (app) {
     TodoListController.init()
 
+    const validationAndSanitization  = [ check('desc').isLength({ min: 1 }).trim().escape() ]
+
     app.get('/:id', TodoListController.get)
-    app.put('/:id', [ check('desc').isLength({ min: 1 }).trim().escape() ], TodoListController.update)
+    app.put('/:id', validationAndSanitization, TodoListController.update)
     app.delete('/:id', TodoListController.delete)
-    app.post('/', [ check('desc').isLength({ min: 1 }).trim().escape() ], TodoListController.add)
+    app.post('/', validationAndSanitization, TodoListController.add)
     app.get('/', TodoListController.all)
   }
 

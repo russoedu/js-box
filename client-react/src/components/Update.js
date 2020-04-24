@@ -38,8 +38,6 @@ class Update extends React.Component {
   }
 
   updateItem () {
-    console.log(this.state);
-
     this.ApiService.update(this.state.desc, this.state._id, () => {
       this.props.history.push('/')
     })
