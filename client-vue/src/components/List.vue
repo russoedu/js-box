@@ -7,10 +7,10 @@
           <p class="card-text alert alert-primary">Click on the task description to edit</p>
         </div>
         <div class="list-group" >
-          <ListRow v-for="item in items" :key="item._id" v-bind:item="item" v-bind:onUpdate="onUpdate" v-bind:onDelete="onDelete"/>
+          <ListRow v-for="item in items" :key="item._id" v-bind:item="item" v-bind:onUpdate="updateItem" v-bind:onDelete="deleteItem"/>
         </div>
         <div class="card-body">
-          <button class="btn btn-info" v-on:click="add">New task</button>
+          <button class="btn btn-info" v-on:click="addItem">New task</button>
         </div>
       </div>
 </template>
@@ -30,24 +30,26 @@ export default {
     ListRow
   },
   created () {
-    this.fillData()
+    this.getItems()
   },
   methods: {
-    fillData () {
+    getItems () {
       ApiService.all(items => {
         this.items = items
       })
     },
-    add () {
+    addItem () {
       this.$router.push('add')
     },
-    onDelete (event) {
-      ApiService.delete(event.target.id, () => {
-        this.fillData()
+    deleteItem (event) {
+      const id = event.target.id
+      ApiService.delete(id, () => {
+        this.getItems()
       })
     },
-    onUpdate (event) {
-      this.$router.push(`update/${event.target.id}`)
+    updateItem (event) {
+      const id = event.target.id
+      this.$router.push('/update/' + id)
     }
   }
 }

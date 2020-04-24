@@ -3,7 +3,7 @@
     title="Add Task"
     submitTitle="Add"
     v-model="desc"
-    v-bind:handleSubmit="save" />
+    v-bind:handleSubmit="addItem" />
 </template>
 
 <script>
@@ -21,7 +21,7 @@ export default {
     }
   },
   methods: {
-    save () {
+    addItem () {
       ApiService.add(this.desc, () => {
         this.$router.push('/')
       })
