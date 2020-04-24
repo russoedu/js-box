@@ -35,6 +35,9 @@ export default {
   methods: {
     getItems () {
       ApiService.all(items => {
+        items.forEach(item => {
+          item.desc = ApiService.decodeHTML(item.desc)
+        })
         this.items = items
       })
     },

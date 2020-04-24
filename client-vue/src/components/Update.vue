@@ -23,6 +23,7 @@ export default {
   },
   created () {
     ApiService.get(this.$route.params.id, item => {
+      item.desc = ApiService.decodeHTML(item.desc)
       this.item = item
     })
   },
