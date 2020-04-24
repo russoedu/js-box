@@ -9,6 +9,9 @@ JS_BOX_ACCESS_HOST=localhost
 JS_BOX_ACCESS_PORT=80
 JS_BOX_MONGODB_PORT=27017
 
+###### EXTERNAL PROTOCOL => server respond HTTP, but you could (you should!) deploy this behind a HTTPS load balancer, so the client needs this to access the api
+JS_BOX_ACCESS_PROTOCOL=http
+
 ###### MONGO DB CONFIG => username and password
 JS_BOX_MONGO_USERNAME=admin
 JS_BOX_MONGO_PASSWORD=S3cret4ccessP4ssw0rd

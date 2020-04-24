@@ -14,7 +14,7 @@ const httpOptions = {
     'Content-Type':  'application/json',
   })
 };
-const apiUrl = `http://127.0.0.1:${environment.JS_BOX_ACCESS_PORT}/api/`;
+const apiUrl = `${environment.JS_BOX_ACCESS_PROTOCOL}://${environment.JS_BOX_ACCESS_HOST}:${environment.JS_BOX_ACCESS_PORT}/api/`;
 
 @Injectable()
 export class ApiService {

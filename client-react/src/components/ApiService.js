@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = `http://localhost:${process.env.REACT_APP_NGINX_PORT}/api/`
+const baseUrl = `${process.env.REACT_APP_ACCESS_PROTOCOL}://${process.env.REACT_APP_ACCESS_HOST}:${process.env.REACT_APP_ACCESS_PORT}/api/`
 
 class ApiService {
 

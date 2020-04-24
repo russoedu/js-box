@@ -30,18 +30,22 @@ JS_BOX_ENVIRONMENT=development
 JS_BOX_CLIENT=react
 
 ###### EXTERNAL ACCESS => host, port and DB port
-JS_BOX_ACCESS_HOST=localhost                   # the URL to be accessible externally
-JS_BOX_ACCESS_PORT=80                          # the port that will be accessible externally
-JS_BOX_MONGODB_PORT=27017                      # The port to be able to access MongoDB externally
+JS_BOX_ACCESS_HOST=localhost
+JS_BOX_ACCESS_PORT=8020
+JS_BOX_MONGODB_PORT=9020
+
+###### EXTERNAL PROTOCOL => server respond HTTP, but you could (you should!) deploy this behind a HTTPS load balancer, so the client needs this to access the api
+JS_BOX_ACCESS_PROTOCOL=http
 
 ###### MONGO DB CONFIG => username and password
-JS_BOX_MONGO_USERNAME=admin                    # MongoDB user name
-JS_BOX_MONGO_PASSWORD=S3cret4ccessP4ssw0rd     # Mongo DB password
+JS_BOX_MONGO_USERNAME=admin
+JS_BOX_MONGO_PASSWORD=S3cret4ccessP4ssw0rd
 
 
 ###### DEVELOPMENT ONLY EXTERNAL PORTS => ports to directly access client and API
-JS_BOX_DEV_CLIENT_PORT=3000
-JS_BOX_DEV_API_PORT=4000
+JS_BOX_DEV_CLIENT_PORT=3020
+JS_BOX_DEV_API_PORT=4020
+
 ```
 
 ## Available external ports
