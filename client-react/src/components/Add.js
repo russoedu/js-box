@@ -10,8 +10,8 @@ class Add extends React.Component {
 
     this.ApiService = new ApiService()
 
-    this.handleChange = this.handleChange.bind(this)
-    this.save = this.save.bind(this)
+    this.addItem = this.addItem.bind(this)
+    this.changeItem = this.changeItem.bind(this)
   }
 
   static get propTypes () {
@@ -20,15 +20,15 @@ class Add extends React.Component {
     }
   }
 
-  handleChange (event) {
-    event.preventDefault()
-    this.setState({ desc: event.target.value })
-  }
-
-  save () {
+  addItem () {
     this.ApiService.add(this.state.desc, () => {
       this.props.history.push('/')
     })
+  }
+
+  changeItem (event) {
+    event.preventDefault()
+    this.setState({ desc: event.target.value })
   }
 
   render () {
@@ -37,8 +37,8 @@ class Add extends React.Component {
         title="Add Task"
         submitTitle="Add"
         desc={this.state.desc}
-        handleChange={this.handleChange}
-        handleSubmit={this.save}
+        handleSubmit={this.addItem}
+        handleChange={this.changeItem}
       />
     )
   }

@@ -8,8 +8,8 @@ class Update extends React.Component {
     super(props)
     this.ApiService = new ApiService()
 
-    this.handleChange = this.handleChange.bind(this)
-    this.save = this.save.bind(this)
+    this.changeItem = this.changeItem.bind(this)
+    this.updateItem = this.updateItem.bind(this)
 
     this.state = {
       _id: '',
@@ -32,11 +32,11 @@ class Update extends React.Component {
     })
   }
 
-  handleChange (event) {
+  changeItem (event) {
     this.setState({ desc: event.target.value })
   }
 
-  save () {
+  updateItem () {
     this.ApiService.update(this.state.desc, this.state._id, () => {
       this.props.history.push('/')
     })
@@ -48,8 +48,8 @@ class Update extends React.Component {
         title="Edit Task"
         submitTitle="Update"
         desc={this.state.desc}
-        handleSubmit={this.save}
-        handleChange={this.handleChange}
+        handleSubmit={this.updateItem}
+        handleChange={this.changeItem}
       />
     )
   }

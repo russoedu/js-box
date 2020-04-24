@@ -9,10 +9,11 @@ class List extends React.Component {
     this.state = { items: '' }
     this.ApiService = new ApiService()
 
-    // bind
-    this.onDelete = this.onDelete.bind(this)
-    this.onUpdate = this.onUpdate.bind(this)
-    this.add = this.add.bind(this)
+    this.addItem = this.addItem.bind(this)
+    this.deleteItem = this.deleteItem.bind(this)
+    this.updateItem = this.updateItem.bind(this)
+
+    this.itemRef = React.createRef();
   }
 
   static get propTypes () {
@@ -22,40 +23,38 @@ class List extends React.Component {
   }
 
   componentDidMount () {
-    this.fillData()
+    this.getItems()
   }
 
-  fillData () {
+  getItems () {
     this.ApiService.all((data) => {
       this.setState({ items: data })
     })
   }
 
-  add () {
+  addItem () {
     this.props.history.push('/add')
   }
 
-  onDelete (event) {
+  deleteItem (event) {
     const id = event.target.id
     this.ApiService.delete(id, () => {
-      this.fillData()
+      this.getItems()
     })
   }
 
-  onUpdate (event) {
+  updateItem (event) {
     const id = event.target.id
     this.props.history.push('/update/' + id)
   }
 
-  listRow () {
+  render () {
+    const items = []
     if (this.state.items instanceof Array) {
-      return this.state.items.map((item, index) => {
-        return <ListRow onDelete={this.onDelete} onUpdate={this.onUpdate} item={item} key={index} />
+      this.state.items.map((item, index) => {
+        items.push(<ListRow ref={this.itemRef} onDelete={this.deleteItem} onUpdate={this.updateItem} item={item} key={index} />)
       })
     }
-  }
-
-  render () {
     return (
       <div className="card">
         <div className="card-header">
@@ -65,10 +64,10 @@ class List extends React.Component {
           <p className="card-text alert alert-primary">Click on the task description to edit</p>
         </div>
         <div className="list-group">
-          {this.listRow()}
+          {items}
         </div>
         <div className="card-body">
-          <button onClick={this.add} className="btn btn-info">New task</button>
+          <button onClick={this.addItem} className="btn btn-info">New task</button>
         </div>
       </div>
     )
