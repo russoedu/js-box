@@ -42,7 +42,7 @@ I studied a lot to understand it and this is a TL;DR summary:
 - [x] Protect MongoDB with a password, as it can be accessed externally.
 - [x] Make all clients as similar as possible, including naming and logic.
 - [x] Fix issues with $ on NGINX
-- [ ] validationAndSanitization for Angular and Vue
+- [x] validationAndSanitization for Angular and Vue
 - [ ] Secure the API - CORS, CSRF, SESSION, COOKIE, AUTH&AUTH... https://blog.insiderattack.net/developing-secure-node-js-applications-a-broad-guide-286afdec69ce
 - [ ] https://preactjs.com/
 - [ ] https://svelte.dev/
