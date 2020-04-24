@@ -24,6 +24,9 @@ export class ListComponent implements OnInit {
   getItems(): void {
     this.apiService.all()
       .subscribe(items => {
+        items.forEach(item => {
+          item.desc = (this.apiService.decodeHTML(item.desc))
+        })
         return (this.list = items)
       });
   }

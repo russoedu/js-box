@@ -35,7 +35,7 @@ export class UpdateComponent implements OnInit {
       this.apiService
         .get(id)
         .subscribe(res => {
-          return this.item = new Item(res.desc)
+          return this.item = new Item(this.apiService.decodeHTML(res.desc))
         });
     }
   }
