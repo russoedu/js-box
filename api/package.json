@@ -13,13 +13,11 @@
   "dependencies": {
     "acorn": "^7.1.1",
     "auto-bind": "^4.0.0",
-    "cookie-parser": "^1.4.5",
-    "csurf": "^1.11.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.4.0",
     "helmet": "^3.22.0",
-    "mongoose": "^5.9.7",
+    "mongoose": "^5.9.10",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.10.0"
   },
