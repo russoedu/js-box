@@ -1,7 +1,5 @@
-import './config/database.js'
-import express from 'express'
-import AppController from './src/controllers/AppController.js'
+import AppController from './config/server.js'
 
-const app = express()
+const server = new AppController()
 
-AppController.init(express, app)
+server.start()

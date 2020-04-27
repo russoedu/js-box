@@ -4,12 +4,15 @@ import uniqueValidator from 'mongoose-unique-validator'
 const Schema = mongoose.Schema
 
 class TodoList {
-  initSchema () {
+  /**
+   * Get the DB model intance
+   */
+  static getInstance () {
     const schema = new Schema(
       {
         desc: {
           type: String,
-          required: true,
+          required: true
         }
       },
       {
@@ -19,13 +22,8 @@ class TodoList {
     )
 
     schema.plugin(uniqueValidator)
-    mongoose.model('TodoList', schema)
-  }
-
-  getInstance () {
-    this.initSchema()
-    return mongoose.model('TodoList')
+    return mongoose.model('TodoList', schema)
   }
 }
 
-export default TodoList
+export default TodoList.getInstance()
