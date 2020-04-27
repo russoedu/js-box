@@ -1,5 +1,5 @@
 # base image
-FROM node:13
+FROM node:14
 
 # set working directory
 WORKDIR /app/api
@@ -8,4 +8,4 @@ WORKDIR /app/api
 RUN npm install -g nodemon
 
 # start app
-CMD nodemon app.js
+CMD nodemon --trace-warnings app.js

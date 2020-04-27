@@ -1,5 +1,5 @@
 # base image
-FROM node:13
+FROM node:14
 
 # Set working directory
 WORKDIR /app/api
@@ -14,4 +14,4 @@ RUN npm install --production
 RUN npm install -g pm2
 
 # start app
-CMD ["pm2-runtime", "app.js"]
+CMD pm2-runtime app.js

@@ -1,5 +1,5 @@
 # base image
-FROM node:13
+FROM node:14
 
 # Set working directory as the client dir
 WORKDIR /app/client

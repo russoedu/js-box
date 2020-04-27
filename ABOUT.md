@@ -44,6 +44,7 @@ I studied a lot to understand it and this is a TL;DR summary:
 - [x] Fix issues with $ on NGINX
 - [x] validationAndSanitization for Angular and Vue
 - [ ] Secure the API - CORS, CSRF, SESSION, COOKIE, AUTH&AUTH... https://blog.insiderattack.net/developing-secure-node-js-applications-a-broad-guide-286afdec69ce
+- [ ] Log Docker on file
 - [ ] https://preactjs.com/
 - [ ] https://svelte.dev/
 - [ ] https://hapi.dev/

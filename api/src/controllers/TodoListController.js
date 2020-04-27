@@ -1,10 +1,12 @@
-const TodoListModel = require('../models/TodoListModel')
-const mongoose = require('mongoose')
-require('dotenv').config()
+import TodoListModel from '../models/TodoListModel.js'
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 class TodoListController {
   static init () {
-    mongoose.connect(`mongodb://${process.env.JS_BOX_MONGO_USERNAME}:${process.env.JS_BOX_MONGO_PASSWORD}@mongodb/js-box?authSource=admin`, { useNewUrlParser: true })
+    mongoose.connect(`mongodb://${process.env.JS_BOX_MONGO_USERNAME}:${process.env.JS_BOX_MONGO_PASSWORD}@mongodb/js-box?authSource=admin`, { useNewUrlParser: true, useUnifiedTopology: true })
       .then(() => {
         console.log('MogoDB connected')
       })
@@ -89,4 +91,4 @@ class TodoListController {
   }
 }
 
-module.exports = TodoListController
+export default TodoListController

@@ -1,6 +1,7 @@
-const express = require('express')
-const app = express()
+import './config/database.js'
+import express from 'express'
+import AppController from './src/controllers/AppController.js'
 
-const AppController = require('./src/controller/AppController')
+const app = express()
 
 AppController.init(express, app)

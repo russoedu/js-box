@@ -1,5 +1,5 @@
 # base image
-FROM node:13
+FROM node:14
 
 # Env vars
 ENV JS_BOX_ANGULAR_PRODUCTION=false

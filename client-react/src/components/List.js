@@ -28,10 +28,12 @@ class List extends React.Component {
 
   getItems () {
     this.ApiService.all((items) => {
-      items.forEach(item => {
-        item.desc = this.ApiService.decodeHTML(item.desc)
-      });
-      this.setState({ items })
+      if (items) {
+        items.forEach(item => {
+          item.desc = this.ApiService.decodeHTML(item.desc)
+        });
+        this.setState({ items })
+      }
     })
   }
 

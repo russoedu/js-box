@@ -4,9 +4,9 @@ FROM nginx
 
 
 
-# Install node 13
+# Install node 14
 RUN apt-get update && apt-get install -y curl dirmngr apt-transport-https lsb-release ca-certificates gettext-base
-RUN curl -sL https://deb.nodesource.com/setup_13.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt -y install nodejs
 
 # Set Nginx production config

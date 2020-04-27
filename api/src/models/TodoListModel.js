@@ -1,17 +1,31 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
+import uniqueValidator from 'mongoose-unique-validator'
+
 const Schema = mongoose.Schema
 
-const TodoList = new Schema(
-  {
-    desc: {
-      type: String
-    }
-  },
-  {
-    collection: 'Tasks'
+class TodoList {
+  initSchema () {
+    const schema = new Schema(
+      {
+        desc: {
+          type: String,
+          required: true,
+        }
+      },
+      {
+        timestamps: true,
+        collection: 'Tasks'
+      }
+    )
+
+    schema.plugin(uniqueValidator)
+    mongoose.model('TodoList', schema)
   }
-)
 
-mongoose.set('useFindAndModify', false)
+  getInstance () {
+    this.initSchema()
+    return mongoose.model('TodoList')
+  }
+}
 
-module.exports = mongoose.model('TodoList', TodoList)
+export default TodoList
