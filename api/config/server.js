@@ -7,7 +7,6 @@ import path from 'path'
 import dotenv from 'dotenv'
 import autoBind from 'auto-bind'
 
-import './database.js'
 import routes from './routes.js'
 
 dotenv.config()
