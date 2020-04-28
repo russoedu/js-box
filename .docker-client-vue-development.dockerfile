@@ -5,7 +5,7 @@ FROM node:14
 WORKDIR /app/client
 
 # Install envsubst
-RUN apt-get update && apt-get install -y gettext-base
+RUN apt-get update && apt-get install -qq gettext-base
 
 # Install Vue
 RUN npm install -g @vue/cli@4 @vue/cli-service-global@4

@@ -8,7 +8,7 @@ ENV JS_BOX_ANGULAR_PRODUCTION=false
 WORKDIR /app/client
 
 # Install envsubst
-RUN apt-get update && apt-get install -y gettext-base
+RUN apt-get update && apt-get install -qq gettext-base
 
 # Install Angular CLI
 RUN npm install -g @angular/cli@9

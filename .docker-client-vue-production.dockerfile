@@ -2,7 +2,7 @@
 FROM nginx
 
 # Install node 14
-RUN apt-get update && apt-get install -y curl dirmngr apt-transport-https lsb-release ca-certificates gettext-base
+RUN apt-get update && apt-get install -qq curl dirmngr apt-transport-https lsb-release ca-certificates gettext-base
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt -y install nodejs
 

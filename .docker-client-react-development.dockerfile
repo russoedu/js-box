@@ -5,7 +5,7 @@ FROM node:14
 WORKDIR /app/client
 
 # Install envsubst
-RUN apt-get update && apt-get install -y gettext-base
+RUN apt-get update && apt-get install -qq gettext-base
 
 # Install React Scripts
 RUN npm install -g react-scripts@3
