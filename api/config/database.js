@@ -5,7 +5,7 @@ class Connection {
     const url = `mongodb://${process.env.JS_BOX_MONGO_USERNAME}:${process.env.JS_BOX_MONGO_PASSWORD}@mongodb/js-box?authSource=admin`
     const config = {
       useNewUrlParser: true,
-      useFindAndModify: true,
+      useFindAndModify: false,
       useCreateIndex: true,
       useUnifiedTopology: true
     }

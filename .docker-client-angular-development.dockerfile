@@ -14,4 +14,6 @@ RUN apt-get update && apt-get install -y gettext-base
 RUN npm install -g @angular/cli@9
 
 # Rebuild native modules to run on Docker, substitute environmnt vars and start the Angular app
-CMD /bin/bash -c "npm rebuild && envsubst < ./src/environments/env-template.ts > ./src/environments/environment.ts && ng serve --disable-host-check --hmr=true --poll=1000 --host 0.0.0.0"
+CMD /bin/bash -c "npm rebuild && \
+                  envsubst < ./src/environments/env-template.ts > ./src/environments/environment.ts && \
+                  ng serve --disable-host-check --hmr=true --poll=1000 --host 0.0.0.0"

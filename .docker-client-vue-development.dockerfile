@@ -11,4 +11,6 @@ RUN apt-get update && apt-get install -y gettext-base
 RUN npm install -g @vue/cli@4 @vue/cli-service-global@4
 
 # Rebuild native modules to run on Docker, substitute environmnt vars and start the Vue app
-CMD /bin/bash -c "npm rebuild && envsubst < env-template > .env && vue serve src/main.js"
+CMD /bin/bash -c "npm rebuild && \
+                  envsubst < env-template > .env && \
+                  vue serve src/main.js"

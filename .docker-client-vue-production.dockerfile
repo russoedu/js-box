@@ -22,4 +22,6 @@ RUN npm install --quiet
 RUN npm install -g @vue/cli@4 @vue/cli-service-global@4 --quiet
 
 # Substitute env vars for the Vue app, build the Vue app and run
-CMD /bin/bash -c "envsubst < env-template > .env && vue build src/main.js --dest build && exec nginx -g 'daemon off;'"
+CMD /bin/bash -c "envsubst < env-template > .env && \
+                  vue build src/main.js --dest build && \
+                  exec nginx -g 'daemon off;'"

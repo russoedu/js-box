@@ -1,9 +1,6 @@
 # Latest Nginx as base image
 FROM nginx
 
-
-
-
 # Install node 14
 RUN apt-get update && apt-get install -y curl dirmngr apt-transport-https lsb-release ca-certificates gettext-base
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
@@ -25,4 +22,6 @@ RUN npm install --production --quiet
 RUN npm install -g react-scripts@3 --quiet
 
 # Substitute env vars for the React app, build the React app and run
-CMD /bin/bash -c "envsubst < env-template > .env && react-scripts build && exec nginx -g 'daemon off;'"
+CMD /bin/bash -c "envsubst < env-template > .env && \
+                  react-scripts build && \
+                  exec nginx -g 'daemon off;'"
