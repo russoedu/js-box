@@ -16,10 +16,10 @@ WORKDIR /app/client
 COPY ./client-vue .
 
 # Install and cache app dependencies
-RUN npm install --quiet
+RUN npm install --silent
 
 # Install Vue CLI
-RUN npm install -g @vue/cli@4 @vue/cli-service-global@4 --quiet
+RUN npm install -g @vue/cli@4 @vue/cli-service-global@4 --silent
 
 # Substitute env vars for the Vue app, build the Vue app and run
 CMD /bin/bash -c "envsubst < env-template > .env && \

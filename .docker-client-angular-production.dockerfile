@@ -20,10 +20,10 @@ COPY ./client-angular .
 RUN touch ./src/environments/environment.ts
 
 # Install and cache app dependencies
-RUN npm install --quiet
+RUN npm install --silent
 
 # Install Angular CLI
-RUN npm install -g @angular/cli@9 --quiet
+RUN npm install -g @angular/cli@9 --silent
 
 # Substitute env vars for the Angular app, build the Angular app and run
 CMD /bin/bash -c "envsubst < ./src/environments/env-template.ts > ./src/environments/environment.prod.ts && \

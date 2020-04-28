@@ -16,10 +16,10 @@ WORKDIR /app/client
 COPY ./client-react .
 
 # Install and cache app dependencies
-RUN npm install --production --quiet
+RUN npm install --production --silent
 
 # Install React CLI
-RUN npm install -g react-scripts@3 --quiet
+RUN npm install -g react-scripts@3 --silent
 
 # Substitute env vars for the React app, build the React app and run
 CMD /bin/bash -c "envsubst < env-template > .env && \
