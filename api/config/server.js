@@ -1,5 +1,6 @@
 import express from 'express'
 import checkAPIs from 'express-validator'
+import compression from 'compression'
 import morgan from 'morgan'
 import helmet from 'helmet'
 import fs from 'fs'
@@ -29,6 +30,7 @@ class AppController {
 
     server.use(morgan('combined', { stream: accessLogStream }))
     server.use(express.json())
+    server.use(compression())
   }
 
   secure () {

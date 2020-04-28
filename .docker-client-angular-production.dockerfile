@@ -7,7 +7,7 @@ ENV JS_BOX_ANGULAR_PRODUCTION=true
 # Install node 14
 RUN apt-get update && apt-get install -qq curl dirmngr apt-transport-https lsb-release ca-certificates gettext-base
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt -qq install nodejs
+RUN apt -y install nodejs
 
 # Set Nginx production config
 COPY ./nginx/client-production.conf /etc/nginx/conf.d/default.conf
