@@ -4,7 +4,7 @@ FROM nginx
 # Install node 14
 RUN apt-get update && apt-get install -qq curl dirmngr apt-transport-https lsb-release ca-certificates gettext-base
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt -y install nodejs
+RUN apt -qq install nodejs
 
 # Set Nginx production config
 COPY ./nginx/client-production.conf /etc/nginx/conf.d/default.conf
