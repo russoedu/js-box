@@ -18,7 +18,7 @@
     "react": "^16",
     "react-dom": "^16",
     "react-router-dom": "^5",
-    "react-scripts": "^3"
+    "react-scripts": "^5"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
